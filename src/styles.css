@@ -1,8 +1,6 @@
 /* TODO LIST
 --------------
-
-- Fix sidebar size in full size
-- Horizon line
+- Import Google Font to use for sidenav
 - Javascript link 
 
 */
@@ -10,6 +8,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
+@import "~roboto-fontface/css/roboto/roboto-fontface.css";
 
 :root {
     --sidebar-background: #284777;
@@ -17,12 +16,12 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: #f2f2f2;
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -59,12 +58,13 @@ a, a:hover, a:focus {
 
 i, span {
     display: inline-block;
+    font-family: 'Roboto', sans-serif;
 }
 
 .hr-90{
     width: 90%;
     padding: 0;
-    color: white;
+    border-color: white;
 }
 
 .fa {
@@ -103,6 +103,7 @@ i, span {
 
 #sidebar ul li a {
     text-align: left;
+    text-transform: uppercase;
 }
 
 #sidebar.active ul li a {
@@ -144,7 +145,7 @@ i, span {
 
 #sidebar ul li a {
     padding: 10px;
-    font-size: 1em;
+    font-size: 1.2em;
     display: block;
 }
 #sidebar ul li a:hover {
@@ -260,6 +261,7 @@ a.primary:hover, a.secondary:hover {
 
     #sidebar ul li a {
         padding: 20px 10px;
+        font-size: 0.9em;
     }
 
     #sidebar ul li a span {
