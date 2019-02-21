@@ -1,7 +1,8 @@
 /* TODO LIST
 --------------
-- Find sliding login plugin or create from scratch
+- minimize login button
 - Fix mobile view (hide sidebar?)
+- Fix sidebar position
 
 */
 
@@ -12,12 +13,20 @@
 @import url('https://fonts.googleapis.com/css?family=Major+Mono+Display');
 
 /* ---------------------------------------------------
-    GENERAL STYLE
+    COLOR VARIABLES
 ----------------------------------------------------- */
 
 :root {
     --sidebar-background: #284777;
     --sidebar-secondary: #3470d1;
+}
+
+/* ---------------------------------------------------
+    GENERAL STYLE
+----------------------------------------------------- */
+.wrapper {
+    display: flex;
+    align-items: stretch;
 }
 
 body {
@@ -37,21 +46,6 @@ a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
-}
-
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
 }
 
 .line {
@@ -91,7 +85,7 @@ i, span, a {
     padding-left: 2rem;
   }
   
-  .has-search .form-control-feedback {
+.has-search .form-control-feedback {
     position: absolute;
     display: block;
     width: 2rem;
@@ -100,19 +94,34 @@ i, span, a {
     text-align: center;
     pointer-events: none;
     color: #aaa;
-  }
+}
 
-  #top-nav {
+/* ---------------------------------------------------
+    TOP NAV BAR STYLE
+----------------------------------------------------- */
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+#top-nav {
     padding: 2px;
-  }
+}
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
-.wrapper {
-    display: flex;
-    align-items: stretch;
-}
 
 #sidebar {
     min-width: 250px;
@@ -249,6 +258,42 @@ a.primary:hover, a.secondary:hover {
 .btn-primary:hover {
     background: var(--sidebar-secondary);
     border-color: var(--sidebar-secondary);
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#login-bar {
+    width: 100%;
+    background-color: #b2b2b2;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    left: 4.5% !important;
+}
+
+div.login {
+    display: block;
+    color: black;
+    padding: 7px;
+}
+
+div.login * {
+    margin: 0 auto;
+}
+
+div.login:nth-child(1) p {
+    margin-left: 10px;
+    color: white;
+}
+
+.login input {
+    width: 85%;
+    border-radius: 5px;
+    border: none;
+    padding: 3px;
 }
 
 /* ---------------------------------------------------
