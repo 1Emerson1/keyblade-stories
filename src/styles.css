@@ -124,11 +124,17 @@ i, span, a {
 ----------------------------------------------------- */
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
     background: var(--sidebar-background);
     color: #fff;
+    min-width: 250px;
+    max-width: 250px;
+    position: fixed;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
     transition: all 0.3s;
+    overflow-x: hidden;
 }
 
 #sidebar.active {
@@ -296,22 +302,41 @@ div.login:nth-child(1) p {
     padding: 3px;
 }
 
+#sidebar-login-mobile div:nth-child(2) {
+    text-align: right;
+}
+
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
-    padding: 20px;
-    min-height: 100vh;
+    overflow: hidden;
+    margin-left: 250px; /* Same as the width of the sidenav */
+    margin-top: 10px;
     transition: all 0.3s;
-	width: 100%;
 }
 
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 @media (max-width: 768px) {
-    .fa {
+    #login-bar {
+        display: none;
+    }
+
+    #content {
+        margin-left: 0;
+    }
+    
+    #sidebar .fa {
         font-size: 1em !important;
+    }
+
+    /* ---------------------------------------------------
+            SIDEBAR STYLE RULES
+    ----------------------------------------------------- */
+    #sidebar {
+        display: none;
     }
 
     #sidebar {
