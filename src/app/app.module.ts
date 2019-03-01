@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroIngComponent } from './hero-ing/hero-ing.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeroIngComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

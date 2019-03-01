@@ -1,8 +1,7 @@
 /* TODO LIST
 --------------
-- minimize login button
-- Fix mobile view (hide sidebar?)
-- Fix sidebar position
+- mobile menu button broken
+- main js file not working (menu dropdown)
 
 */
 
@@ -17,7 +16,8 @@
 ----------------------------------------------------- */
 
 :root {
-    --sidebar-background: #284777;
+    --sidebar-background: rgb(40, 71, 119);
+    --sidebar-background-transparent: rgba(40, 71, 119, 0.95);
     --sidebar-secondary: #3470d1;
 }
 
@@ -25,17 +25,19 @@
     GENERAL STYLE
 ----------------------------------------------------- */
 .wrapper {
+    width: 100%;
     display: flex;
     align-items: stretch;
+    
 }
 
 body {
+    height: 100% !important;
     font-family: 'Roboto', sans-serif;
     background: #f2f2f2;
 }
 
 p {
-    font-family: 'Roboto', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -134,12 +136,10 @@ i, span, a {
     top: 0;
     left: 0;
     transition: all 0.3s;
-<<<<<<< HEAD
     overflow-x: hidden;
-=======
     position: fixed;
     z-index: 10;
->>>>>>> bdc0730f53bbcde2fb15d4abe62ee11d29016acb
+
 }
 
 #sidebar.active {
@@ -307,14 +307,78 @@ div.login:nth-child(1) p {
     padding: 3px;
 }
 
+/* ---------------------------------------------------
+    MOBILE MENU STYLE
+----------------------------------------------------- */
+
+#sidebar-login-mobile {
+    width: 100%;
+    position: fixed;
+}
+
 #sidebar-login-mobile div:nth-child(2) {
     text-align: right;
+}
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: var(--sidebar-background);
+    background-color: var(--sidebar-background-transparent);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 30px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #aaa9a9;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (min-width: 768px) {
+    .overlay {display: none;}
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px;}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
 }
 
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
+    width: 100%;
     overflow: hidden;
     margin-left: 250px; /* Same as the width of the sidenav */
     margin-top: 10px;
@@ -322,28 +386,32 @@ div.login:nth-child(1) p {
 }
 
 /* ---------------------------------------------------
-    Main Page STYLE
+    LANDING PAGE STYLE
 ----------------------------------------------------- */
-.homeHeroImage{
-    background-image: url("/assets/hero.jpg");
 
-    height:50%;
-    width: 100%;
-
-    display:flex;
-
-    background-repeat: no-repeat;
-    background-size:cover;
-    
-    
+#heroImg:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
 }
-.heroText{
+
+#heroImg {
+    background-image: url("assets/hero.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+#heroText {
     text-align:center;
     position:absolute;
     top:50%;
-    left:50%;
+    left:40%;
     transform:translate (-50%, -50%);
     color:black;
+    border: 1px solid black;
 }
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -354,6 +422,7 @@ div.login:nth-child(1) p {
     }
 
     #content {
+        width: 100%;
         margin-left: 0;
     }
     
