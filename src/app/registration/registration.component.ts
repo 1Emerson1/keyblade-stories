@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
+  onFileSelected(event){
+    console.log(event);
+  }
+
   constructor() { }
 
   ngOnInit() {
