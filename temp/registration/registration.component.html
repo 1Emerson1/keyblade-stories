@@ -1,0 +1,45 @@
+<html>
+  <router-outlet></router-outlet>
+<body>
+  <div class = form-wrapper>
+    <form>
+      <input type="file" (change) = "onFileSelected($event)">
+      <label>Avatar</label>
+
+      <div class ="form group">
+        <label class = "control-label col-sm-2" for="username">Username: </label>
+        <div class ="col-sm-10">
+            <input type="text" class ="form-control" required ="" ng-model ="username" />
+        </div>  
+      </div>  
+
+      <div class ="form group">
+        <label class = "control-label col-sm-2" for="password">Password: </label>
+        <div class ="col-sm-10">
+            <input type="password" class ="form-control" required = "" ng-model ="password"/>
+        </div>  
+      </div>  
+
+      <div class ="form group">
+          <label class = "control-label col-sm-2" for="confirmPass"> Confirm Password: </label>
+          <div class ="col-sm-10">
+              <input type="password" class ="form-control" required = ""ng-model= "confirmPass"/>
+          </div>  
+      </div>  
+
+      <div class ="form group">
+          <label class = "control-label col-sm-2" for="userEmail"> Email: </label>
+          <div class ="col-sm-10">
+              <input type ="email" class ="form-control" required = "" ng-model ="userEmail"/>
+          </div>  
+      </div>  
+
+      
+
+      <button id = "submit" type="submit">Register</button>
+      
+    </form>
+  </div>
+  
+</body>
+</html>
