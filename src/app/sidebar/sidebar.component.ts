@@ -11,4 +11,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  closeNav() {
+    document.getElementById("mobileNav").style.width = "0%";
+  }
 }

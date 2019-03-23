@@ -1,34 +1,28 @@
 /* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#topNav {
+    width: 100%;
+    overflow: hidden;
+    margin-left: 250px; /* Same as the width of the sidenav */
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
     LOGIN STYLE
 ----------------------------------------------------- */
-#login-bar {
+#sidebar-login-mobile {
     width: 100%;
-    background-color: #b2b2b2;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    margin-bottom: 10px;
-    position: relative;
-    left: 4.5% !important;
 }
 
-div.login {
-    display: block;
-    color: black;
-    padding: 7px;
-}
-
-div.login * {
-    margin: 0 auto;
-}
-
-div.login:nth-child(1) p {
-    margin-left: 10px;
-    color: white;
-}
-
-.login input {
-    width: 85%;
-    border-radius: 5px;
-    border: none;
-    padding: 3px;
+@media (max-width: 768px) {
+    #topNav {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    #sidebar .fa {
+        font-size: 1em !important;
+    }
 }

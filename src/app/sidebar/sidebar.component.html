@@ -1,15 +1,14 @@
-<div id="sidebar" class="wrapper">
+<div id="sidebar" class="container-fluid">
     <!-- Sidebar  -->
     <nav>
         <div class="sidebar-header">
             <h3>Keyblade Stories</h3>
-            <strong>KS</strong>
         </div>
         <hr class="hr-90">
         <ul class="list-unstyled components">
-            <li class="active">
+            <li>
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                    <i class="fa fa-home dropdown-toggle" aria-hidden="true">&nbsp;&nbsp;Home</i>
+                    <i class="fa fa-home dropdown-toggle" aria-hidden="true">&nbsp;&nbsp;Home&nbsp;</i>
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
@@ -28,7 +27,7 @@
                     <i class="fa fa-briefcase">&nbsp;&nbsp;About</i>
                 </a>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-                    <i class="fa fa-copy dropdown-toggle">&nbsp;&nbsp;Pages</i>
+                    <i class="fa fa-copy dropdown-toggle">&nbsp;&nbsp;Pages&nbsp;</i>
                 </a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
@@ -48,23 +47,33 @@
         <hr class="hr-90">
         <ul id="profile_nav" class="list-unstyled components">
             <li>
+                <a routerLink="/login-window">
+                    <i class="fa fa-sign-in">&nbsp;&nbsp;Login</i>
+                </a>
+            </li>
+            <li>
                 <a routerLink="/register">
                     <i class="fa fa-user" aria-hidden="true">&nbsp;&nbsp;Register</i>
                 </a>
             </li>
+            
         </ul>
         <hr class="hr-90">
     </nav><!--END NAV -->
+
   </div>
+
+  <app-home></app-home>
   
   <!-- Mobile Menu -->
   <div id="mobileNav" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   
     <!-- Overlay content -->
     <div class="overlay-content">
         <a href="#">Home</a>
         <a href="#">About</a>
+        <a href="#">Login</a>
         <a href="#">Profile</a>
         <a href="#">Stories</a>
         <a href="#">Favourites</a>
