@@ -9,6 +9,7 @@ import { SidebarUserComponent } from './sidebar-user/sidebar-user.component';
 import { StoryPageComponent } from './story-page/story-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AppRoutingModule, routingComponent } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,12 @@ import { RegistrationComponent } from './registration/registration.component';
     SidebarUserComponent,
     StoryPageComponent,
     UserProfileComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    routingComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

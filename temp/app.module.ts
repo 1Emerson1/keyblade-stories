@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule, routingComponent} from './app-routing.module';
+import { AppRoutingModule, routingComponent} from '../src/app/app-routing.module';
 import { AppComponent } from './app.component';
 import { StoryPageComponent } from './story-page/story-page.component';
 
