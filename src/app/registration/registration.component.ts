@@ -12,4 +12,8 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
+  onFileSelected(event){
+    console.log(event);
+  }
+
 }

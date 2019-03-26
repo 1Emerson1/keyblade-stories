@@ -1,39 +1,34 @@
-<div class = form-wrapper>
-    <form>
-      <input type="file" (change) = "onFileSelected($event)">
-      <label>Avatar</label>
-
-      <div class ="form group">
-        <label class = "control-label col-sm-2" for="username">Username: </label>
-        <div class ="col-sm-10">
-            <input type="text" class ="form-control" required ="" ng-model ="username" />
+<div id="registration" class="container-fluid">
+    <div id="avatar" class="row">
+        <img class="col-6 col-sm-3" (change)="onFileSelected($event)" src="./assets/profile.jpg" alt="avatar">      
+    </div>
+    <div id="username" class="row">
+        <label class="col-sm-2 offset-sm-1" for="username">Username:</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" required="" ng-model="username" />
+        </div>
+    </div>
+    <div id="email" class="row">
+        <label class = "control-label col-sm-2 offset-sm-1" for="userEmail">Email: </label>
+        <div class="col-sm-7">
+            <input type="email" class="form-control" required="" ng-model="userEmail"/>
         </div>  
-      </div>  
-
-      <div class ="form group">
-        <label class = "control-label col-sm-2" for="password">Password: </label>
-        <div class ="col-sm-10">
-            <input type="password" class ="form-control" required = "" ng-model ="password"/>
+    </div>
+    <div id="pswd" class="row">
+        <label class="control-label col-sm-2 offset-sm-1" for="password">Password: </label>
+        <div class="col-sm-7">
+            <input type="password" class="form-control" required="" ng-model="password"/>
         </div>  
-      </div>  
-
-      <div class ="form group">
-          <label class = "control-label col-sm-2" for="confirmPass"> Confirm Password: </label>
-          <div class ="col-sm-10">
-              <input type="password" class ="form-control" required = ""ng-model= "confirmPass"/>
-          </div>  
-      </div>  
-
-      <div class ="form group">
-          <label class = "control-label col-sm-2" for="userEmail"> Email: </label>
-          <div class ="col-sm-10">
-              <input type ="email" class ="form-control" required = "" ng-model ="userEmail"/>
-          </div>  
-      </div>  
-
-      
-
-      <button id = "submit" type="submit">Register</button>
-      
-    </form>
-  </div>
+    </div>
+    <div id="confirm_pswd" class="row">
+        <label class = "control-label col-sm-2 offset-sm-1" for="confirmPass">Confirm Password: </label>
+        <div class ="col-sm-7">
+            <input type="password" class="form-control" required=""ng-model="confirmPass"/>
+        </div>  
+    </div>
+    <div class="row justify-content-center">
+        <button id="submit" class="btn btn-primary" type="submit">Register</button>
+    </div>
+    <br>
+</div>
+<br> 
