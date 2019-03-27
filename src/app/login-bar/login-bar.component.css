@@ -4,10 +4,25 @@
 #topNav {
     width: 100%;
     overflow: hidden;
-    margin-left: 250px; /* Same as the width of the sidenav */
     margin-top: 15px;
     margin-bottom: 8px;
     transition: all 0.3s;
+}
+
+.search {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.search input {
+    background-color: transparent;
+    border: none;
+    border-radius: 0%;
+    border-bottom: 1px solid grey;
+}
+
+.search input:focus {
+    outline: none !important;
 }
 
 /* ---------------------------------------------------

@@ -1,11 +1,19 @@
 <div id="topNav">
+    <div class="row float-right search">
+        <form class="form-inline md-form form-sm active-cyan-2 mt-2 float-right">
+            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </form>
+    </div>
+
+
     <!-- Login Bar - Mobile Screen -->
     <div id="sidebar-login-mobile" class="row d-lg-none">
         <div id="login-bars" class="col-6">
             <a (click)="openNav()"><i class="fa fa-bars" aria-hidden="true"></i></a>
         </div>
-        <div id="login-btn" class="col-6">
-            <a class="float-right" href="">LOGIN</a>
+        <div class="col-6">
+            <a class="float-right" routerLink="/login">LOGIN</a>
         </div>
     </div>
 </div>

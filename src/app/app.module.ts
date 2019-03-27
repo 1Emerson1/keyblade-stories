@@ -11,6 +11,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { MainComponent } from './main/main.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MainComponent } from './main/main.component';
     RegistrationComponent,
     LoginWindowComponent,
     routingComponent,
-    MainComponent
+    MainComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

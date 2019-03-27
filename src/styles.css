@@ -1,6 +1,7 @@
 /* TODO LIST
 --------------
 - Hide mobile nav after click
+- mobile login bar shows at 769px width
 */
 
 /* You can add global styles to this file, and also import other style files */
@@ -71,11 +72,5 @@ i, span, a {
 
 .row {
     margin: 0 auto;
-}
-
-.panel-home {
-    background-color: white;
-    margin: 5px auto;
-    padding: 20px;
 }
 
