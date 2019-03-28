@@ -27,6 +27,18 @@
     background: var(--sidebar-background);
 }
 
+.header {
+    font-family: 'Major Mono Display', monospace;
+    text-align: center;
+    color: white;
+}
+
+.hr-75 {
+    width: 20%;
+    background-color: white;
+    height: 1px;
+}
+
 #sidebar ul li a {
     padding: 10px;
     font-size: 1.2em;
@@ -94,6 +106,10 @@ a.primary:hover, a.secondary:hover {
     border-color: var(--sidebar-secondary);
 }
 
+.components a {
+    cursor: pointer;
+}
+
 /* ---------------------------------------------------
     MOBILE MENU STYLE
 ----------------------------------------------------- */
@@ -121,7 +137,7 @@ a.primary:hover, a.secondary:hover {
 .overlay a {
     padding: 8px;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 25px;
     color: white;
     display: block;
     transition: 0.3s;

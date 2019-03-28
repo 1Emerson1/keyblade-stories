@@ -1,0 +1,24 @@
+#story-page {
+    background-color: #fff;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+p {
+    color: black;
+}
+
+#comments, #chapters {
+    padding: 10px;
+}
+
+.img-fluid {
+    padding: 10px;
+}
+
+#chapters, #comments {
+    border: 1px solid black;
+    border-radius: 5px;
+}

@@ -15,4 +15,5 @@ export class MainComponent implements OnInit {
   closeNav() {
     document.getElementById("mobileNav").style.width = "0%";
   }
+
 }

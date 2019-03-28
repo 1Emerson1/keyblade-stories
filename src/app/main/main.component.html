@@ -7,12 +7,15 @@
       <hr class="hr-90">
       <ul class="list-unstyled components">
           <li>
-              <a routerLink="/home">
-                  <i class="fa fa-home">&nbsp;&nbsp;Home</i>
-              </a>
-              <a routerLink="/about">
-                  <i class="fa fa-users">&nbsp;&nbsp;About</i>
-              </a>
+            <a routerLink="/home">
+                <i class="fa fa-home">&nbsp;&nbsp;Home</i>
+            </a>
+            <a routerLink="/about">
+                <i class="fa fa-users">&nbsp;&nbsp;About</i>
+            </a>
+            <a routerLink="/story-page">
+                <i class="fa fa-book">&nbsp;&nbsp;Stories</i>
+            </a>
               <!--<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
                   <i class="fa fa-copy dropdown-toggle">&nbsp;&nbsp;Pages&nbsp;</i>
               </a>
@@ -30,8 +33,7 @@
           </li>
       </ul>
       <hr class="hr-90">
-      <!--<app-sidebar-user></app-sidebar-user>-->
-      <ul id="profile_nav" class="list-unstyled components">
+      <ul class="list-unstyled components">
           <li>
               <a routerLink="/login-window">
                   <i class="fa fa-sign-in">&nbsp;&nbsp;Login</i>
@@ -44,7 +46,20 @@
           </li>
           
       </ul>
-      <hr class="hr-90">
+      <!--<ul class="list-unstyled components">
+            <hr class="hr-90">
+            <li>
+                <a routerLink="/profile">
+                    <i class="fa fa-user" aria-hidden="true">&nbsp;&nbsp;Profile</i>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/favorites">
+                    <i class="fa fa-star" aria-hidden="true">&nbsp;&nbsp;Favorites</i>
+                </a>
+            </li>
+            <hr class="hr-90">
+        </ul>-->
   </nav><!--END NAV -->
 
   <!-- PAGE CONTENT-->
@@ -60,12 +75,25 @@
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
 
   <!-- Overlay content -->
-  <div class="overlay-content">
-      <a routerLink="/home" >Home</a>
+  <div class="overlay-content" (click)="closeNav()">
+    <div>
+        <h1 class="header">KS</h1>
+        <hr class="hr-75">
+    </div>
+
+      <a routerLink="/home">Home</a>
       <a routerLink="/about">About</a>
-      <a routerLink="/register">Register</a>
-      <!--<a routerLink="/profile">Profile</a>
-      <a routerLink="/stories">Stories</a>
-      <a routerLink="/favorites">Favorites</a>-->
+      <a routerLink="/story-page">Stories</a>
+      
+    <div>
+        <hr class="hr-75">
+        <a routerLink="/login">Login</a>
+        <a routerLink="/register">Register</a>
+    </div>
+    <!--<div *ngIf="myService.currentUser.type_id == 1">
+        <hr class="hr-75">
+        <a routerLink="/profile">Profile</a>
+        <a routerLink="/favorites">Favorites</a>
+    </div>-->
   </div>
 </div>

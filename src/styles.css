@@ -15,7 +15,7 @@
 ----------------------------------------------------- */
 :root {
     --sidebar-background: rgb(40, 71, 119);
-    --sidebar-background-transparent: rgba(40, 71, 119, 0.95);
+    --sidebar-background-transparent: rgba(40, 71, 119, 0.99);
     --sidebar-secondary: #3470d1;
 }
 
