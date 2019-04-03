@@ -1,18 +1,21 @@
 const express = require('express');
 const mysql = require('mysql');
-const app = express();
 
-app.listen(8000, ()=>{
-    console.log('Server started on local host 8000')
-})
 
 const con = mysql.createConnection({
-    host:'localhost',
-    user: "root",
-    password: "root"
+    host:"mysql.story.mychatbot.xyz",
+    user: "story_db_user",
+    password: "Key12$34$",
+    database: "story_db"
 });
-
+ 
 con.connect(function(err) {
-    if(err) throw err;
-    console.log("Mysql connected");
-})
+    if (err) throw err;
+    con.query("SELECT * FROM User", function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+    });
+  });
+ 
+
+ 
