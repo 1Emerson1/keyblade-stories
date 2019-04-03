@@ -1,0 +1,15 @@
+#results {
+    background-color: #fff;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    width: 100%;
+    padding: 0;
+}
+
+p {
+    color: black;
+}
+
+.img-fluid {
+    padding: 10px;
+}
