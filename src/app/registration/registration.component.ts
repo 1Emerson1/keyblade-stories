@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  users = {}
+
+  constructor(private UserRegistrationService : UserService) { }
 
   ngOnInit() {
+    this.users = this.UserRegistrationService.getUsers();
+    
   }
 
   onFileSelected(event){
