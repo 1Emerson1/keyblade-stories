@@ -1,4 +1,4 @@
-#results {
+#show-results {
     background-color: #fff;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
@@ -12,4 +12,14 @@ p {
 
 .img-fluid {
     padding: 10px;
+    margin: 0 auto;
+}
+
+#top-text {
+    padding: 0;
+    margin-bottom: -10px;
+}
+
+p {
+    font-size: 15px;
 }
