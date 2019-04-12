@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../Models/user.model';
-import { con } from 'src/app/server.js';
+import { con } from '../server.js';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,9 @@ export class UserService {
     profileImage: null
   }
   
-  constructor() { }
+  constructor() {}
 
-  ngInit(){
-    
-  }
+  ngInit() {}
   
   getUsers(){
     var users: User[];
@@ -76,4 +74,3 @@ export class UserService {
 
   }
 }
-
