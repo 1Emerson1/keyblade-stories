@@ -12,7 +12,8 @@ import { SearchResultComponent } from './components/search-result/search-result.
 const routes: Routes = [
   { 
     path: '', 
-    component: HomeComponent
+    pathMatch: 'full',
+    redirectTo: 'login'
   },
   { path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
