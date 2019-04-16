@@ -8,6 +8,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { AboutComponent } from './components/about/about.component';
 import { StoryPageComponent } from './components/story-page/story-page.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { CreateStoryComponent } from './components/create-story/create-story.component';
+import { CreateChapterComponent } from './components/create-chapter/create-chapter.component';
 
 const routes: Routes = [
   { 
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'user', component: UserProfileComponent},
   { path: 'story-page', component: StoryPageComponent},
   { path: 'results', component: SearchResultComponent},
+  { path: 'create-story', component: CreateStoryComponent},
+  { path: 'create-chapter', component: CreateChapterComponent},
 
   // otherwise redirect to home
   { path: '**', redirectTo: ''}
@@ -35,4 +39,5 @@ export class AppRoutingModule { }
 export const routingComponent 
         = [HomeComponent, RegistrationComponent, 
            LoginPageComponent, UserProfileComponent,
-           AboutComponent, StoryPageComponent, SearchResultComponent];
+           AboutComponent, StoryPageComponent, SearchResultComponent,
+           CreateStoryComponent, CreateChapterComponent];

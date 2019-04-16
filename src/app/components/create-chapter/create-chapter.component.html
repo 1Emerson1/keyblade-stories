@@ -1,0 +1,24 @@
+<link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
+<div id = "createChapter" class = "container-fluid">
+    <div id = "headerBar">
+        <h1> Create Chapter</h1>
+      </div>
+      <form [formGroup] = "chapterForm" class = "chapter-container" (ngSubmit) ="chapterCreate()">
+        <!--Chapter Title-->
+        <h5>Title</h5>
+        <!--
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.chapterTitle.errors }">
+            <input type="text" placeholder="Title" formControlName="chapterTitle" minlength="4" maxlength = "50">
+        </p>
+      
+        <div *ngIf="isSubmitted && formControls.chapterTitle.errors" class="help-block">
+            <div *ngIf="formControls.chapterTitle.errors.required">Chapter title is required</div>
+        </div> 
+        -->
+      <!--Quill Text Editor-->
+        <h5>Content</h5>
+        <quill-editor [style] = "editorStyle" formControlName = "editor"></quill-editor>
+
+        <input type ="submit" value = "Create Chapter">
+      </form>
+</div>
