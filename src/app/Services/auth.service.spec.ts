@@ -4,6 +4,7 @@ import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   constructor() { }
@@ -14,10 +15,10 @@ export class AuthService {
 
   public isLoggedIn(){
     return localStorage.getItem('ACCESS_TOKEN') !== null;
-
   }
 
   public logout(){
     localStorage.removeItem('ACCESS_TOKEN');
   }
+
 }

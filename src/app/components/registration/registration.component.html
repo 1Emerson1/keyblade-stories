@@ -1,34 +1,67 @@
-<div id="registration" class="container-fluid">
+<div id="registration" class="container-fluid" align="center">
+        <div class="row" align="center">
+                <div class="col-5">
+                    <a routerLink="/login">Login</a>
+                </div>
+                <div class="col-2">
+                    |
+                </div>
+                <div class="col-5">
+                    <a routerLink="/register">Register</a>
+                </div>
+            </div>
+
     <div id="avatar" class="row">
-        <img class="col-6 col-sm-3" (change)="onFileSelected($event)" src="./assets/profile.jpg" alt="avatar">      
+        <div class="col-6 col-sm-3">
+            <label for="image-upload">
+                <img [src]="netImage" alt="avatar"> 
+            </label>
+            <input id="image-upload" type="file" accept="image/*" (change)="onFileSelected($event)">
+        </div>    
+        
     </div>
-    <div id="username" class="row">
-        <label class="col-sm-2 offset-sm-1" for="username">Username:</label>
-        <div class="col-sm-7">
-            <input type="text" class="form-control" required="" ng-model="username" />
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="row">
+            <label class="col-sm-2 offset-sm-1" for="username">Username:</label>
+            <div class="col-sm-7">
+                <input type="username" formControlName="username">
+            </div>
+            <div *ngIf="formControls.username.touched && formControls.username.errors" class="help-block">
+                <p *ngIf="formControls.username.errors.required">Username is required.</p>
+            </div>
         </div>
-    </div>
-    <div id="email" class="row">
-        <label class = "control-label col-sm-2 offset-sm-1" for="userEmail">Email: </label>
-        <div class="col-sm-7">
-            <input type="email" class="form-control" required="" ng-model="userEmail"/>
-        </div>  
-    </div>
-    <div id="pswd" class="row">
-        <label class="control-label col-sm-2 offset-sm-1" for="password">Password: </label>
-        <div class="col-sm-7">
-            <input type="password" class="form-control" required="" ng-model="password"/>
-        </div>  
-    </div>
-    <div id="confirm_pswd" class="row">
-        <label class = "control-label col-sm-2 offset-sm-1" for="confirmPass">Confirm Password: </label>
-        <div class ="col-sm-7">
-            <input type="password" class="form-control" required=""ng-model="confirmPass"/>
-        </div>  
-    </div>
-    <div class="row justify-content-center">
-        <button id="submit" class="btn btn-primary" type="submit">Register</button>
-    </div>
-    <br>
+
+        <div class="row">
+            <label class="control-label col-sm-2 offset-sm-1" for="register-email">Email: </label>
+            <div class="col-sm-7">
+                <input type="email" formControlName="email">
+            </div> 
+            <div *ngIf="formControls.email.touched && formControls.email.errors" class="help-block">
+                <p *ngIf="formControls.email.errors.required">Email is required</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="control-label col-sm-2 offset-sm-1" for="register-password">Password: </label>
+            <div class="col-sm-7">
+                <input type="password" formControlName="password">
+            </div>
+            <div *ngIf="formControls.password.touched && formControls.password.errors" class="help-block">
+                <p *ngIf="formControls.password.errors.required">Password is required.</p>
+                <p *ngIf="formControls.password.errors.pattern">Password requires one captial letter (A-Z) and symbol [ !@#$%^&*() ]</p>
+            </div> 
+        </div>
+        <div class="row">
+            <label class="control-label col-sm-2 offset-sm-1" for="register-confirm">Confirm Password: </label>
+            <div class="col-sm-7">
+                <input type="password" formControlName="password_confirm">
+            </div>
+            <div *ngIf="formControls.password_confirm.touched && formControls.password_confirm.errors" class="help-block">
+                <p *ngIf="formControls.password.errors.required">Confirm password is required.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">Register</button>
+        </div>
+    </form>
 </div>
-<br> 

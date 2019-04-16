@@ -13,7 +13,7 @@ const routes: Routes = [
   { 
     path: '', 
     pathMatch: 'full',
-    redirectTo: 'login'
+    redirectTo: 'home'
   },
   { path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'results', component: SearchResultComponent},
 
   // otherwise redirect to home
-  { path: '**', redirectTo: ''}
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({
