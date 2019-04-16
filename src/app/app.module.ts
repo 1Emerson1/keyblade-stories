@@ -14,6 +14,9 @@ import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { MainComponent } from './components/main/main.component';
 import { AboutComponent } from './components/about/about.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { CreateStoryComponent } from './components/create-story/create-story.component';
+import { CreateChapterComponent } from './components/create-chapter/create-chapter.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -27,14 +30,20 @@ import { SearchResultComponent } from './components/search-result/search-result.
     MainComponent,
     AboutComponent,
     SearchResultComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    CreateStoryComponent,
+    CreateChapterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     HttpClientModule
+=======
+    QuillModule
+>>>>>>> 9149e93e79403cd76f50a24d6ddfe88352fe38b3
   ],
   providers: [],
   bootstrap: [AppComponent]
