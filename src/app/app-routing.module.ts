@@ -15,7 +15,7 @@ const routes: Routes = [
   { 
     path: '', 
     pathMatch: 'full',
-    redirectTo: 'login'
+    redirectTo: 'home'
   },
   { path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'create-chapter', component: CreateChapterComponent},
 
   // otherwise redirect to home
-  { path: '**', redirectTo: ''}
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

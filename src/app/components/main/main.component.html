@@ -39,14 +39,9 @@
                   <i class="fa fa-sign-in">&nbsp;&nbsp;Login</i>
               </a>
           </li>
-          <li>
-              <a routerLink="/register">
-                  <i class="fa fa-user" aria-hidden="true">&nbsp;&nbsp;Register</i>
-              </a>
-          </li>
           
       </ul>
-      <!--<ul class="list-unstyled components">
+      <ul class="list-unstyled components" *ngIf="isLogged">
             <hr class="hr-90">
             <li>
                 <a routerLink="/profile">
@@ -59,7 +54,7 @@
                 </a>
             </li>
             <hr class="hr-90">
-        </ul>-->
+        </ul>
   </nav><!--END NAV -->
 
   <!-- PAGE CONTENT-->
@@ -88,12 +83,12 @@
     <div>
         <hr class="hr-75">
         <a routerLink="/login">Login</a>
-        <a routerLink="/register">Register</a>
     </div>
     <!--<div *ngIf="myService.currentUser.type_id == 1">
         <hr class="hr-75">
         <a routerLink="/profile">Profile</a>
         <a routerLink="/favorites">Favorites</a>
+        <a >Logout</a>
     </div>-->
   </div>
 </div>
