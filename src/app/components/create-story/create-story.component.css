@@ -4,6 +4,7 @@
     border-top-right-radius: 7px;
     width: 100%;
     margin-top: 10px;
+    padding-bottom: 10px;
 }
 
 #createStory input {
