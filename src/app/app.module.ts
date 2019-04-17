@@ -39,11 +39,8 @@ import { QuillModule } from 'ngx-quill';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
-    HttpClientModule
-=======
+    HttpClientModule,
     QuillModule
->>>>>>> 9149e93e79403cd76f50a24d6ddfe88352fe38b3
   ],
   providers: [],
   bootstrap: [AppComponent]

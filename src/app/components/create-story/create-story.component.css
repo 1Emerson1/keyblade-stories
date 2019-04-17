@@ -58,4 +58,63 @@
     color: #fff;
     background: #014089;
   }
+  #coverImageHeader{
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #coverImage img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0 auto;
+    cursor: pointer;
+    box-shadow: 0 10px 6px -6px #777;
+  }
+  #coverImage > div {
+    margin: 0 auto;
+}
+  #coverImage {
+    padding: 13px;
+  }
+
+  #coverImage > div {
+    margin: 0 auto;
+  }
+  #image-upload {
+    display: none !important;
+  }
+
+  li{
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 5px;
+    margin-bottom: 10px;
+  }
+  li button{
+    color: #fff;
+    background: #014089;
+    border-color: transparent;
+    cursor: pointer;
+    border-radius:3px;
+  }
+  li button:hover{
+    background: #17c;
+  }
+  li button:focus{
+    background-color: green;
+  }
+
+  @media only screen and (max-width: 600px){
+    #createStory textarea{
+      height:200px;
+    }
+  }
+
+  @media only screen and (max-width: 400px){
+    #createStory textarea{
+      height:300px;
+    }
+  }
   
