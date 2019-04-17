@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -14,14 +14,29 @@ export class CreateChapterComponent implements OnInit {
   editorStyle ={
     height:'400px'
   }
+   config = {
+     toolbar:[
+      ['bold','italic','underline','strike','link'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+      [ 'blockquote', 'code-block'],
+      ['video', 'image'],
+      [{ 'indent': '-1'}, {'indent':'+1'}]
+     ]
+   }
+   
 
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.chapterForm =new FormGroup({
+      'chapterTitle' :new FormControl(null),
       'editor': new FormControl(null)
     })
+    
   }
 
   chapterCreate(){

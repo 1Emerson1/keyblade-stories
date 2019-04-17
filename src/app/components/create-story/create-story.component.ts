@@ -26,8 +26,10 @@ export class CreateStoryComponent implements OnInit {
   ];
 */
   tags = TAGS;
+  selectedTags : Tag[]
   storyForm: FormGroup;
-  isSubmitted = false;
+  netImage:any = "./assets/profile.jpg";
+  
   
   constructor(private formBuilder: FormBuilder) { }
 
@@ -37,20 +39,34 @@ export class CreateStoryComponent implements OnInit {
       title: [''],
       tags:[''],
       summary: [''],
-      //coverImage:['']
-  });
+      coverImage:['']
+    });
   
   }
  
-  get formControls(){ return this.formControls; }
+  get formControls(){ return this.storyForm.controls; }
 
   storyCreate(){
     console.log(this.storyForm.value);
-    this.isSubmitted = true;
     if(this.storyForm.invalid){
       return;
     }
-
   }
   
+  onFileSelected(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+  
+      reader.onload = (event: ProgressEvent) => {
+        this.netImage = (<FileReader>event.target).result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  selectTags(){
+    
+
+  }
 }
+

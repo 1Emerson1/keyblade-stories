@@ -2,29 +2,34 @@
   <div id = "headerBar">
     <h1> Create Story</h1>
   </div>
+  
   <form [formGroup] = "storyForm" class = "story-container" (ngSubmit) ="storyCreate()">
+    <!--Cover Image-->
+    <div id="coverImage" class="row">
+        <div class="col-6 col-sm-3">
+          <h3 id = "coverImageHeader"> Cover Image </h3>
+            <label for="image-upload">
+                <img [src]="netImage" alt="Cover Image"> 
+            </label>
+            <input id="image-upload" type="file" accept="image/*" formControlName = "coverImage" (change)="onFileSelected($event)">
+        </div>      
+    </div>
     <!--Story Title-->
-      <h5>Title</h5>
-      <p [ngClass]="{ 'has-error': formControls.storyTitle.errors }">
-          <input type="text" placeholder="Title" formControlName="storyTitle" minlength="4" maxlength = "50">
-      </p>
-      <div *ngIf=" formControls.storyTitle.errors" class="help-block">
-          <div *ngIf="formControls.storyTitle.errors.required">Story title is required</div>
-      </div>
+      <label for="storyTitle"><strong>Title</strong></label>
+        <div class = row>
+          <input type="title" placeholder="Title" formControlName ="title" minlength="4" maxlength = "50">
+          <div *ngIf=" formControls.title.errors" class="help-block">
+              <div *ngIf="formControls.title.errors.required">Story title is required</div>
+          </div>
+        </div>
     <!--Story Tags-->  
       <h5>Tags</h5>
-      <p>Testing the ngFor to create a list of buttons</p>
-      <div *ngIf="formControls.title.touched">
-
-      
-      <li *ngFor="let tag of tags">
-        <button (click)="setNumber(i)">{{ tag.name }}</button>
-      </li>
-    </div>
-    
+        <li *ngFor="let tag of tags">
+          <button (click)="selectTags()">{{ tag.name }}</button>
+        </li>
     <!--Story Summary-->
       <h5>Summary</h5>  
-      <textarea [ngClass]="{ 'has-error': isSubmitted && formControls.storyDescrip.errors }">
+      <textarea formControlName = "summary" placeholder = "Enter your story's summary...">
       </textarea>
       
     <!--Story Cover Image--> 
