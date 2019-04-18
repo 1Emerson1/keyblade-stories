@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
-import { Tag } from 'src/app/Models/tag';
-import { TAGS } from 'src/app/Models/mock-tag';
+import { TAGS } from '../../Models/mock-tag';
+import { Tag } from '../../models/tag';
 
 /*const TAGS = [
   {id:1, name:'Action'},

@@ -1,6 +1,6 @@
 import { Tag } from './tag';
 
-export const Tags: Tag[] =[
+export const TAGS: Tag[] =[
     {id:1, name:'Action'},
     {id:2, name:'Adventure'},
     {id:3, name:'Comedy'},
