@@ -9,8 +9,8 @@ export class JwtService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(email:string, password:string) {
-    return this.httpClient.post<{access_token:  string}>('http://www.your-server.com/auth/login', {email, password}).pipe(tap(res => {
+  login(username:string, password:string) {
+    return this.httpClient.post<{access_token:  string}>('http://localhost:8080/api/auth/signin', {username, password}).pipe(tap(res => {
       localStorage.setItem('access_token', res.access_token);
     }))
   }
