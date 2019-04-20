@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { Router } from  '@angular/router';
-import { User } from  '../../models/user';
 import { AuthService } from  '../../services/auth.service';
+import { JwtService } from '../../Services/jwt.service';
 
 @Component({
     selector: 'login-page',
@@ -14,7 +14,7 @@ import { AuthService } from  '../../services/auth.service';
     loginForm: FormGroup;
     isSubmitted = false;
   
-    constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
+    constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private jwtService: JwtService) { }
   
     ngOnInit() {
       this.loginForm  =  this.formBuilder.group({
@@ -23,10 +23,13 @@ import { AuthService } from  '../../services/auth.service';
       });
     }
 
+    
+
     get formControls() { return this.loginForm.controls; }
 
     login() {
       console.log(this.loginForm.value);
+      console.log(typeof this.loginForm);
       this.isSubmitted = true;
 
       if(this.loginForm.invalid) {
@@ -34,7 +37,11 @@ import { AuthService } from  '../../services/auth.service';
       }
 
       this.authService.login(this.loginForm.value);
-      this.router.navigateByUrl('/story-page');
+      //this.router.navigateByUrl('/story-page');
+    }
+    getUsers(){
+      console.log('Getting all users');
+      this.jwtService.getUser();
     }
 
   }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, PatternValidator } from '@angular/f
 import { Router } from '@angular/router';
 import { User } from  '../../models/user';
 import { AuthService } from '../../services/auth.service';
+import { JwtService } from '../../Services/jwt.service';
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +16,7 @@ export class RegistrationComponent implements OnInit {
   isSubmitted = false;
   netImage:any = "./assets/profile.jpg"
 
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private jwtService: JwtService) { }
 
   ngOnInit() {
    // this.users = this.UserRegistrationService.getUsers();
@@ -39,8 +40,10 @@ export class RegistrationComponent implements OnInit {
     }
     
     // log user in
-    this.authService.login(this.registerForm.value);
-    this.router.navigateByUrl('/story-page');
+    this.jwtService.createUser(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password);
+    //this.jwtService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password);
+    //this.authService.login(this.registerForm.value);
+    //this.router.navigateByUrl('/story-page');
   }
 
   onFileSelected(event) {

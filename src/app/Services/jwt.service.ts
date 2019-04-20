@@ -9,15 +9,16 @@ export class JwtService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(email:string, password:string) {
-    return this.httpClient.post<{access_token:  string}>('http://www.your-server.com/auth/login', {email, password}).pipe(tap(res => {
+  login(username:string, password:string) {
+    return this.httpClient.post<{access_token:  string}>('http://localhost:8080/api/auth/signin', {username, password}).pipe(tap(res => {
       localStorage.setItem('access_token', res.access_token);
     }))
   }
 
-  register(email:string, password:string) {
-    return this.httpClient.post<{access_token: string}>('http://www.your-server.com/auth/register', {email, password}).pipe(tap(res => {
-      this.login(email, password)
+  register(username:string, email:string, password:string) {
+    console.log('Testing REgistration');
+    return this.httpClient.post<{access_token: string}>('http://localhost:8080/api/auth/signup', {username, email, password}).pipe(tap(res => {
+      this.login(username, password);
     }))
   }
 
@@ -27,6 +28,12 @@ export class JwtService {
 
   public get loggedIn(): boolean{
     return localStorage.getItem('access_token') !==  null;
+  }
+
+  getUser(){
+    return this.httpClient.get<any>('http://localhost:8080/api/test/allUsers').subscribe((res)=>{
+      console.log(res);
+  });
   }
 
 }
