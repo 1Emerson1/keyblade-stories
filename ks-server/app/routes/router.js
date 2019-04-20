@@ -16,5 +16,9 @@ module.exports = function (app) {
   app.post('/api/auth/signin', controller.signin);
  
   app.get('/api/test/user', [authJwt.verifyToken], controller.userContent);
+
+  app.get('/api/test/allUsers', controller.getUsers);
+
+  app.post('/api/test/createUser', controller.createUser);
  
 }

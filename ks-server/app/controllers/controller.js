@@ -12,7 +12,7 @@ var bcrypt = require('bcryptjs');
 exports.getUsers = (req, res) => {
   User.findAll().then(users => res.json(users))
 }
- 
+
 exports.signup = (req, res) => {
   // Save User to Database
   User.create({

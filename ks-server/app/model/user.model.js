@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BLOB,
       allowNull: true
     },
-    firstName: {
+    /*firstName: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true
     }
+    */
   }, {
     timestamps: false
   });
