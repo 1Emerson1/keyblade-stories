@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
-import { TAGS } from '../../Models/mock-tag';
+
 import { Tag } from '../../models/tag';
 
 /*const TAGS = [
@@ -25,7 +25,7 @@ export class CreateStoryComponent implements OnInit {
     {id:4, name:'Crime'}
   ];
 */
-  tags = TAGS;
+  //tags = TAGS;
   selectedTags : Tag[]
   storyForm: FormGroup;
   netImage:any = "./assets/profile.jpg";

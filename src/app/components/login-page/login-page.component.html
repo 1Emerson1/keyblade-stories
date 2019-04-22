@@ -12,13 +12,13 @@
         </div>
     </div>
 
-    <form [formGroup]="loginForm" class="login-container" (ngSubmit)="getUsers()">
+    <form [formGroup]="loginForm" class="login-container" (ngSubmit)="signin()">
       <div class="row">
         <label class="col-sm-2 offset-sm-1" for="username">Username:</label>
         <div class="col-sm-7">
             <input type="username" formControlName="username">
           <div *ngIf="formControls.username.touched && formControls.username.errors || isSubmitted" class="help-block">
-            <p *ngIf="formControls.username.errors.required">Username is required</p>
+            <p>Username is required</p>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
           <div class="col-sm-7">
               <input type="password" formControlName="password">
             <div *ngIf="formControls.password.touched && formControls.password.errors || isSubmitted" class="help-block">
-              <p *ngIf="formControls.password.errors.required">Password is required</p>
+              <p>Password is required</p>
             </div>
           </div>
       </div>

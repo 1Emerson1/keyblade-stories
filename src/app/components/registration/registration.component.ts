@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, PatternValidator } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from  '../../models/user';
-import { AuthService } from '../../services/auth.service';
-import { JwtService } from '../../Services/jwt.service';
+import { JwtService } from '../../services/jwt.service';
 
 @Component({
   selector: 'app-registration',
@@ -16,34 +14,27 @@ export class RegistrationComponent implements OnInit {
   isSubmitted = false;
   netImage:any = "./assets/profile.jpg"
 
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private jwtService: JwtService) { }
+  constructor(private jwtService: JwtService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-   // this.users = this.UserRegistrationService.getUsers();
-
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      password_confirm: ['', Validators.pattern]
+      password_confirm: ['']
     });
   }
 
   get formControls() { return this.registerForm.controls; }
 
-  register() {
-    console.log(this.registerForm.value);
+  signup() {
     this.isSubmitted = true;
-
     if (this.registerForm.invalid){
       return;
     }
-    
-    // log user in
-    this.jwtService.createUser(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password);
-    //this.jwtService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password);
-    //this.authService.login(this.registerForm.value);
-    //this.router.navigateByUrl('/story-page');
+
+    this.jwtService.signup(this.formControls.username.value, this.formControls.email.value, this.formControls.password.value);
+    this.router.navigateByUrl('/login');
   }
 
   onFileSelected(event) {

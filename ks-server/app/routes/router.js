@@ -1,9 +1,6 @@
-const verifySignUp = require('./verifySignUp');
-const authJwt = require('./verifyJwtToken');
- 
 module.exports = function (app) {
  
-  const controller = require('../controllers/controller');
+  const controller = require('../controllers/authController');
  
   app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -11,14 +8,10 @@ module.exports = function (app) {
     next();
   });
  
-  app.post('/api/auth/signup', [verifySignUp.checkDuplicateUserNameOrEmail], controller.signup);
+  app.post('/api/auth/signup', controller.signup);
  
   app.post('/api/auth/signin', controller.signin);
- 
-  app.get('/api/test/user', [authJwt.verifyToken], controller.userContent);
 
   app.get('/api/test/allUsers', controller.getUsers);
-
-  app.post('/api/test/createUser', controller.createUser);
  
 }

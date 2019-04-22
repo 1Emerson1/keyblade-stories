@@ -1,31 +1,55 @@
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+const Sequelize = require('sequelize');
+const bcrypt = require('bcryptjs');
+
+const config = require('../config/config');
+const db = require('../config/database');
+
+var modelDefinition = {
     username: {
-      type: DataTypes.STRING,
-      primaryKey: true
-    },
-    password: {
-      type: DataTypes.STRING,
+        type: Sequelize.STRING,
+        primaryKey: true,
+        allowNull: false
     },
     email: {
-      type: DataTypes.STRING
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
     },
-    profileImage: {
-      type: DataTypes.BLOB,
-      allowNull: true
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
     },
-    /*firstName: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: true
+};
+
+const modelOptions = {
+  instanceMethods: {
+    comparePasswords: comparePasswords,
+  },
+  hooks: {
+    beforeValidate: hashPassword
+  },
+};
+
+const UserModel = db.define('User', modelDefinition, modelOptions);
+
+// Compare passwords
+function comparePasswords(password, callback) {
+  bcrypt.compare(password, this.password, function (error, isMatch) {
+    if (error) {
+      return callback(error);
     }
-    */
-  }, {
-    timestamps: false
+
+    return callback(null, isMatch);
   });
-    
-  return User;
 }
+
+// Hash the password
+function hashPassword(user) {
+  if (user.changed('password')) {
+    return bcrypt.hash(user.password, 10).then(function (password) {
+      user.password = password;
+    });
+  }
+}
+
+module.exports = UserModel;
