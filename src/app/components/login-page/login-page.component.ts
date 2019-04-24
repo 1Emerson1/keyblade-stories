@@ -31,7 +31,7 @@ import { JwtService } from '../../services/jwt.service';
         return;
       }
       
-      this.jwtService.login(this.formControls.username.value, this.formControls.password.value);
+      this.jwtService.signin(this.formControls.username.value, this.formControls.password.value);
       //this.router.navigateByUrl('/story-page');
     }
 

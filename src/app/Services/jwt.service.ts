@@ -7,14 +7,14 @@ import { map } from 'rxjs/operators';
 export class JwtService {
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string) {
-    return this.http.post<any>("http://localhost:8080/api/auth/signin", 
+  signin(username: string, password: string) {
+    return this.http.post<any>("http://localhost:3000/api/login", 
     { 
       "username": username, 
       "password": password 
     })
       .subscribe((res)=> {
-        
+        console.log(res.token)
       });
   }
   
@@ -22,7 +22,7 @@ export class JwtService {
   signup(username:string, email:string, password:string) {
     console.log("Running signup");
 
-    return this.http.post<any>('http://localhost:8080/api/auth/signup', 
+    return this.http.post<any>('http://localhost:3000/api/signup', 
     {
       "username": username, 
       "email": email, 
