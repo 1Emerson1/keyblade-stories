@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
+import { Router } from '@angular/router';
+
+import { StoryService } from '../../services/story.service';
 
 import { Tag } from '../../models/tag';
 
@@ -31,7 +34,7 @@ export class CreateStoryComponent implements OnInit {
   netImage:any = "./assets/profile.jpg";
   
   
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private storyService: StoryService, private router: Router,private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     
@@ -51,7 +54,11 @@ export class CreateStoryComponent implements OnInit {
     if(this.storyForm.invalid){
       return;
     }
+
+    this.storyService.createStory(this.formControls.title.value, this.formControls.summary.value, this.formControls.coverImage.value);
   }
+
+
   
   onFileSelected(event) {
     if (event.target.files && event.target.files[0]) {

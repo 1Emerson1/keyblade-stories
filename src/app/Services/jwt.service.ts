@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
 export class JwtService {
   constructor(private http: HttpClient) { }
@@ -14,7 +15,7 @@ export class JwtService {
       "password": password 
     })
       .subscribe((res)=> {
-        console.log(res.token)
+        console.log(res)
       });
   }
   
@@ -38,9 +39,9 @@ export class JwtService {
     localStorage.removeItem('access_token');
   }
 
-  //public get loggedIn(): boolean{
-  //  return localStorage.getItem('access_token') !==  null;
-  //}
+  get loggedIn(): boolean{
+    return localStorage.getItem('access_token') !==  null;
+  }
 
   getUser(){
     return this.http.get<any>('http://localhost:8080/api/test/allUsers').subscribe((res)=>{

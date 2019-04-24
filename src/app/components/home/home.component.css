@@ -19,3 +19,8 @@ hr {
     padding: 5px;
     text-align: center;
 }
+
+li {
+    list-style: none;
+    text-align: center;
+}

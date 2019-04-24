@@ -1,18 +1,19 @@
 <div class="row">
     <div class="shadow-sm bg-white rounded panel-home col-sm-5 offset-sm-1">
-        <div class="header-text"><h5 class="text-center">Most Recent Stories</h5></div>
+        <div *ngIf="recentStories" class="header-text"><h5 class="text-center">Most Recent Stories</h5></div>
         <hr>
-        <p>A Punch Rode</p>
-        <p>At the Fog and the Dusk</p>
-        <p>Affair's Living Sleeper</p>
+        <li *ngFor="let story of recentStories">
+            <a routerLink="/story{{story.story_id}}"><p>{{story.title}}</p></a>
+        </li>
+    
     </div>
     
-    <div class="shadow-sm bg-white rounded panel-home col-sm-5">
+    <div *ngIf="popularStories" class="shadow-sm bg-white rounded panel-home col-sm-5">
         <h5 class="text-center">Most Liked Stories</h5>
         <hr>
-        <p>The Cupid the Reply Changed</p>
-        <p>The Bound Wretched's Dream</p>
-        <p>Beast's Apocalypse</p>
+        <li *ngFor="let story of popularStories">
+            <a routerLink="/story{{story.story_id}}"><p>{{story.title}}</p></a>
+        </li>
     </div>
 </div>
     
