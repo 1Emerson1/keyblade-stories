@@ -8,29 +8,32 @@ import { HttpClient } from '@angular/common/http';
 export class JwtService {
   constructor(private http: HttpClient) { }
 
+  public image:string;
   signin(username: string, password: string) {
-    return this.http.post<any>("http://localhost:3000/api/login", 
+    return this.http.post<any>("http://0.0.0.0:3000/api/login", 
     { 
       "username": username, 
       "password": password 
     })
       .subscribe((res)=> {
         console.log(res)
+        this.image = res.user;
       });
   }
-  
 
-  signup(username:string, email:string, password:string) {
+  signup(username:string, email:string, password:string, profileImage:string) {
     console.log("Running signup");
 
-    return this.http.post<any>('http://localhost:3000/api/signup', 
+    return this.http.post<any>('http://0.0.0.0:3000/api/signup', 
     {
       "username": username, 
       "email": email, 
-      "password": password
+      "password": password,
+      "profileImage": profileImage
     })
     .subscribe((res)=> {
       console.log(res)
+      
     });
 
   }

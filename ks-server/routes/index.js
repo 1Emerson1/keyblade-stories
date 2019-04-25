@@ -8,8 +8,9 @@ const authController = require('../controllers/authController');
 const storyController = require('../controllers/storyController');
 
 // user routes
-router.get('/api/profile', passport.authenticate('jwt', { session: false }), userController.getUserById);
-router.get('/api/allUsers', passport.authenticate('jwt', { session: false }), userController.getAllUsers);
+router.get('/api/profile', passport.authenticate('jwt', { session: false }), authController.getUserByJwt);
+// router.get('/api/users', passport.authenticate('jwt', { session: false }), userController.getAllUsers);
+
 router.post('/api/login', authController.authenticateUser);
 router.post('/api/signup', authController.signUp);
 router.post('/api/createstory', storyController.createStory);

@@ -21,6 +21,10 @@ var modelDefinition = {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    profileImage: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
 };
 
 const modelOptions = {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, PatternValidator } from '@angular/forms';
 import { Router } from '@angular/router';
-import { JwtService } from '../../services/jwt.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -14,10 +14,11 @@ export class RegistrationComponent implements OnInit {
   isSubmitted = false;
   netImage:any = "./assets/profile.jpg"
 
-  constructor(private jwtService: JwtService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
+      profileImage: [''],
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -33,16 +34,19 @@ export class RegistrationComponent implements OnInit {
       return;
     }
 
-    this.jwtService.signup(this.formControls.username.value, this.formControls.email.value, this.formControls.password.value);
-    this.router.navigateByUrl('/login');
+    this.authService.signup(this.formControls.username.value, this.formControls.email.value, this.formControls.password.value, this.netImage);
+
+    //this.router.navigateByUrl('/login');
   }
 
+  url:string;
   onFileSelected(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
   
-      reader.onload = (event: ProgressEvent) => {
+      reader.onload = (event) => {
         this.netImage = (<FileReader>event.target).result;
+
       }
       reader.readAsDataURL(event.target.files[0]);
     }

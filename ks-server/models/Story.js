@@ -14,7 +14,7 @@ var modelDefinition = {
         allowNull: false,
     },
     coverImage: {
-        type: Sequelize.BLOB,
+        type: Sequelize.STRING,
         allowNull: true
     },
     summary: {

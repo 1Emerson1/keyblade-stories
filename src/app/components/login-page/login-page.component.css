@@ -18,9 +18,3 @@ form {
 form > * {
   padding: 5px;
 }
-
-.help-block p {
-  padding: 2px;
-  color: red;
-  margin: 0 auto;
-}

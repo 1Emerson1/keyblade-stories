@@ -3,7 +3,7 @@ const User = require('../models/User');
 const UserController = {};
 
 /* Get all users */
-UserController.getAllUsers = (req, res) => {
+/* UserController.getAllUsers = (req, res) => {
   User.findAll({
     where: req.query,
     attributes: ['username', 'email'],
@@ -13,7 +13,7 @@ UserController.getAllUsers = (req, res) => {
     }).catch((error) => {
       res.json(error);
     });
-};
+}; */
 
 /* Get a user */
 UserController.getUserById = (req, res) => {

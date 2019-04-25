@@ -4,15 +4,12 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const promisify = require('es6-promisify');
-const morgan = require('morgan');
 const sequelize = require('sequelize');
 const passport = require('passport');
-const jwt = require('jsonwebtoken');
 const hookJWTStrategy = require('./passportStrategy');
+
 const db = require('./database');
-
 const User = require('./models/User.js');
-
 const routes = require('./routes/index');
 
 const app = express();
@@ -27,7 +24,7 @@ app.use((req, res, next) => {
 
 db.sync({force: false})
 .then(message => {
-    console.log('db synced');
+    console.log('DB synced');
 })
 .catch(function(err) {
     throw err;
@@ -44,8 +41,8 @@ app.use(passport.initialize());
 // Hook the passport JWT strategy.
 hookJWTStrategy(passport);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 
 app.use(cookieParser());
 

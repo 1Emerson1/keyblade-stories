@@ -10,34 +10,39 @@ import { StoryPageComponent } from './components/story-page/story-page.component
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { CreateStoryComponent } from './components/create-story/create-story.component';
 import { CreateChapterComponent } from './components/create-chapter/create-chapter.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { 
-    path: '', 
-    pathMatch: 'full',
-    redirectTo: 'home'
-  },
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
   { path: 'login', component: LoginPageComponent},
   { path: 'register', component: RegistrationComponent},
-  { path: 'user', component: UserProfileComponent},
-  { path: 'story-page', component: StoryPageComponent},
+  { path: 'dashboard', component: UserProfileComponent, canActivate: [AuthGuard]},
+  { path: 'story/:story_id', component: StoryPageComponent},
   { path: 'results', component: SearchResultComponent},
   { path: 'create-story', component: CreateStoryComponent},
   { path: 'create-chapter', component: CreateChapterComponent},
 
   // otherwise redirect to home
-  { path: '**', redirectTo: 'home'}
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
-export const routingComponent 
-        = [HomeComponent, RegistrationComponent, 
-           LoginPageComponent, UserProfileComponent,
-           AboutComponent, StoryPageComponent, SearchResultComponent,
-           CreateStoryComponent, CreateChapterComponent];
+
+export const routingComponent = [
+  HomeComponent, 
+  RegistrationComponent, 
+  LoginPageComponent, 
+  UserProfileComponent,
+  AboutComponent, 
+  StoryPageComponent, 
+  SearchResultComponent,          
+  CreateStoryComponent, 
+  CreateChapterComponent
+];

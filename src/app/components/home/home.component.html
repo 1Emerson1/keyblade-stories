@@ -3,7 +3,7 @@
         <div *ngIf="recentStories" class="header-text"><h5 class="text-center">Most Recent Stories</h5></div>
         <hr>
         <li *ngFor="let story of recentStories">
-            <a routerLink="/story{{story.story_id}}"><p>{{story.title}}</p></a>
+            <a routerLink="/story/{{story.story_id}}"><p>{{story.title}}</p></a>
         </li>
     
     </div>
@@ -12,7 +12,7 @@
         <h5 class="text-center">Most Liked Stories</h5>
         <hr>
         <li *ngFor="let story of popularStories">
-            <a routerLink="/story{{story.story_id}}"><p>{{story.title}}</p></a>
+            <a routerLink="/story/{{story.story_id}}"><p>{{story.title}}</p></a>
         </li>
     </div>
 </div>

@@ -17,7 +17,8 @@ AuthController.signUp = (req, res) => {
       const newUser = {
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        profileImage: req.body.profileImage,
       };
 
       return User.create(newUser).then(() => {
@@ -35,27 +36,34 @@ AuthController.signUp = (req, res) => {
 
 // get user.
 AuthController.getUserByJwt = (req, res) => {
-  if (req.headers && req.headers.authorization) {
-    const token = req.headers['authorization'].replace(/^JWT\s/, '');
-    let decoded;
-    decoded = jwt.verify(token, config.keys.secret);
+  var bearerHeader = req.headers['authorization'];
+  var token;
 
-    console.log(decoded.username);
-    // Fetch the user by id 
-    User.findOne({_username: decoded.username}).then(function(user){
-        // Do something with the user
-        res.status(200).json({
-          user
+  if (bearerHeader) {
+    var bearer = bearerHeader.split(" ");
+    token = bearer[1];
+    jwt.verify(token, config.keys.secret, function (err, decoded) {
+      if(err) {
+        console.log(err);
+      } else {
+        // Fetch the user by id 
+          User.findOne({_username: decoded.username}).then(function(user){
+            // Do something with the user
+            res.status(200).json({
+              user
+            });
         });
-    });
-}
+      }
+      
+    })
+  }
 };
 
 // Authenticate a user.
 AuthController.authenticateUser = (req, res) => {
   if (!req.body.username || !req.body.password) {
     res.status(404).json({
-      message: 'username and password are needed!',
+      message: 'Username and password are needed!',
     });
   } else {
     const username = req.body.username;
@@ -67,8 +75,8 @@ AuthController.authenticateUser = (req, res) => {
     };
     User.findOne(potentialUser).then((user) => {
       if (!user) {
-        res.status(404).json({
-          message: 'Authentication failed!',
+        res.status(401).json({
+          message: 'Username not found!',
         });
       } else {
         user.comparePasswords(password, user.password, (error, isMatch) => {
@@ -77,16 +85,16 @@ AuthController.authenticateUser = (req, res) => {
               username: user.username,
             },
             config.keys.secret, {
-              expiresIn: '300m',
+              expiresIn: '1h',
             },
             );
             res.json({
               success: true,
-              token: `JWT ${token}`,
+              token: `${token}`,
               role: user.role,
             });
           } else {
-            res.status(404).json({
+            res.status(403).json({
               message: 'Login failed!',
             });
           }

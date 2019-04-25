@@ -1,38 +1,59 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup } from  '@angular/forms';
-import { User } from '../models/user';
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
+
 export class AuthService {
+  isLoggedIn: boolean = false;
+  // store the URL so we can redirect after logging in
+  public redirectUrl: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  //public login(){
-    //localStorage.setItem('ACCESS_TOKEN', "access_token");
-  //}
+  login(username: string, password: string) {
+    return this.http.post<any>("http://0.0.0.0:3000/api/login", 
+    { 
+      "username": username, 
+      "password": password 
+    }).pipe(map(user => {
+      if(user && user.token) {
+        localStorage.setItem('ACCESS_TOKEN', JSON.stringify(user.token));
+      }
+      this.isLoggedIn = true;
 
-  // public login(form: FormGroup) {
-  //   let resource = JSON.stringify(form);
+      if(this.redirectUrl) {
+        this.router.navigate([this.redirectUrl]);
+        this.redirectUrl = null;
+      }
 
-  //   return this.httpClient.post<any>('http://localhost:8080/api/auth/signin', resource)
-  //   .pipe(
-      
-  //   );
+      return user;
+    }));
+  }
+
+  logout(): void {
+    this.isLoggedIn = false;
+    localStorage.removeItem('ACCESS_TOKEN');
+  }
+
+  signup(username:string, email:string, password:string, profileImage:string) {
+    return this.http.post<any>('http://0.0.0.0:3000/api/signup', 
+    {
+      "username": username, 
+      "email": email, 
+      "password": password,
+      "profileImage": profileImage
+    })
+    .subscribe((res)=> {
+      this.login(username, password);
+    });
+  }
+
+  get loggedIn(): boolean{
+    console.log(localStorage.getItem('ACCESS_TOOKEN'));
     
-  //   //return this.httpClient.post<{access_token: string}>('http://localhost:8080/api/auth/signin', {resource}).pipe(tap(res => {
-  //   //  localStorage.setItem('access_token', res.access_token);
-  //   //}))
-  // }
-
-  // public isLoggedIn(){
-  //   return localStorage.getItem('ACCESS_TOKEN') !== null;
-
-  // }
-
-  // public logout(){
-  //   localStorage.removeItem('ACCESS_TOKEN');
-  // }
+    return localStorage.getItem('ACCESS_TOKEN') !==  null;
+  }
 }
+
