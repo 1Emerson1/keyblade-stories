@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
+import { User } from '../models/user';
+
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
@@ -12,12 +14,9 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(username: string, password: string) {
-    return this.http.post<any>("http://0.0.0.0:3000/api/login", 
-    { 
-      "username": username, 
-      "password": password 
-    }).pipe(map(user => {
+  login(user: User) {
+    return this.http.post<any>("http://0.0.0.0:3000/api/login", user)
+    .pipe(map(user => {
       if(user && user.token) {
         localStorage.setItem('ACCESS_TOKEN', JSON.stringify(user.token));
       }
@@ -35,19 +34,6 @@ export class AuthService {
   logout(): void {
     this.isLoggedIn = false;
     localStorage.removeItem('ACCESS_TOKEN');
-  }
-
-  signup(username:string, email:string, password:string, profileImage:string) {
-    return this.http.post<any>('http://0.0.0.0:3000/api/signup', 
-    {
-      "username": username, 
-      "email": email, 
-      "password": password,
-      "profileImage": profileImage
-    })
-    .subscribe((res)=> {
-      this.login(username, password);
-    });
   }
 
   get loggedIn(): boolean{

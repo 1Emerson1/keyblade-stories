@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, PatternValidator } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { first } from 'rxjs/operators';
+
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-registration',
@@ -11,30 +14,50 @@ import { AuthService } from '../../services/auth.service';
 export class RegistrationComponent implements OnInit {
 
   registerForm: FormGroup;
-  isSubmitted = false;
+  submitted = false;
+  loading = false;
+  error = '';
   netImage:any = "./assets/profile.jpg"
 
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       profileImage: [''],
       username: ['', Validators.required],
-      email: ['', Validators.required],
       password: ['', Validators.required],
-      password_confirm: ['']
+      password_confirm: ['', Validators.required],
     });
   }
 
-  get formControls() { return this.registerForm.controls; }
+  get f() { return this.registerForm.controls; }
 
   signup() {
-    this.isSubmitted = true;
+    console.log("Registering user!");
+
+    this.submitted = true;
     if (this.registerForm.invalid){
       return;
     }
 
-    this.authService.signup(this.formControls.username.value, this.formControls.email.value, this.formControls.password.value, this.netImage);
+    const newUser: User = {
+      username: this.f.username.value,
+      password: this.f.password.value, 
+      coverImage: this.netImage,
+    }
+    console.log("22222");
+
+    this.userService.signup(newUser).pipe(first())
+     .subscribe(
+       data => {
+        console.log(data)
+       },
+       error => {
+         console.log(error)
+         this.error = error;
+         this.loading = false;
+       }
+     )
 
     //this.router.navigateByUrl('/login');
   }

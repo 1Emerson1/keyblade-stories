@@ -9,6 +9,7 @@
 }
 
 #avatar {
+    margin-top: 10px;
     padding: 13px;
 }
 
@@ -37,12 +38,11 @@ form > * {
     margin-top: 10px;
 }
 
-.help-block {
-    margin: 0 auto;
+div input {
+    margin: 5px;
 }
 
-.help-block p {
-    padding: 2px;
-    color: red;
-    margin: 0 auto;
+.invalid-feedback {
+    margin-left: 10px;
+    text-align: left;
 }

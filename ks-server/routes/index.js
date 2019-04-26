@@ -10,16 +10,17 @@ const chapterController = require('../controllers/chapterController');
 
 // user routes
 router.get('/api/profile', passport.authenticate('jwt', { session: false }), authController.getUserByJwt);
-// router.get('/api/users', passport.authenticate('jwt', { session: false }), userController.getAllUsers);
-
 router.post('/api/login', authController.authenticateUser);
 router.post('/api/signup', authController.signUp);
 router.post('/api/createstory', storyController.createStory);
 router.post('/api/createchapter', chapterController.createChapter);
 
+// story routes
+router.post('/api/createstory', storyController.createStory);
 router.get('/api/recentstories', storyController.recentStories);
 router.get('/api/popularstories', storyController.popularStories);
 router.get('/api/story/:story_id', storyController.getStoryById);
+router.put('/api/story/:story_id', storyController.updateStory);
 
 router.get('/api/story/:story_id/retrieveChapters', chapterController.retrieveChapters);
 router.get('/api/story/:story_id/chapter/:chapterID', chapterController.getChapterById);

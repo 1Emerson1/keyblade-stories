@@ -9,6 +9,7 @@
 
 #submit {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 form {
@@ -17,4 +18,13 @@ form {
 
 form > * {
   padding: 5px;
+}
+
+div input {
+  margin: 10px;
+}
+
+.invalid-feedback {
+  margin-left: 10px;
+  text-align: left;
 }

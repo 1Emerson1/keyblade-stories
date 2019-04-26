@@ -20,8 +20,8 @@ import { CreateStoryComponent } from './components/create-story/create-story.com
 import { CreateChapterComponent } from './components/create-chapter/create-chapter.component';
 
 // SERVICES
-import { JwtService } from './services/jwt.service';
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 // HELPERS
 import { JwtInterceptor } from './helpers/jwt.interceptor';
@@ -65,7 +65,7 @@ import { ChapterPageComponent } from './components/chapter-page/chapter-page.com
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    JwtService, 
+    UserService, 
     AuthService
   ],
   bootstrap: [AppComponent]
