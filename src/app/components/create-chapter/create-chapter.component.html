@@ -1,22 +1,22 @@
 <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
-<div id = "createChapter" class = "container-fluid">
-    <div id = "headerBar">
-        <h1> Create Chapter</h1>
-      </div>
-      <form [formGroup] = "chapterForm" class = "chapter-container" (ngSubmit) ="chapterCreate()">
-        <!--Chapter Title-->
+<div id="createChapter" class="container-fluid">
+    <div id="headerBar">
+      <h3> Create Chapter</h3>
+    </div>
+    <form [formGroup]="chapterForm" class="chapter-container" (ngSubmit)="chapterCreate()">
+      <!--Chapter Title-->
         <h5>Title</h5>
-          <input type="text" placeholder="Title" formControlName="chapterTitle" minlength="4" maxlength = "50">
-       <!--
-      
-        <div *ngIf="formControls.chapterTitle.errors" class="help-block">
-            <div *ngIf="formControls.chapterTitle.errors.required">Chapter title is required</div>
-        </div> 
-      --> 
-      <!--Quill Text Editor-->
-        <h5>Content</h5>
-        <quill-editor [style] = "editorStyle" [modules] = config formControlName = "editor"></quill-editor>
+        <input class="col-12" type="text" placeholder="Title" formControlName="chapterTitle" minlength="4" maxlength="50" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.chapterTitle.errors }">
+        <div *ngIf="submitted && f.chapterTitle.errors" class="invalid-feedback">
+          <div *ngIf="f.chapterTitle.errors.required">Title is required</div>
+        </div>
 
-        <input type ="submit" value = "Create Chapter">
-      </form>
+    <!--Quill Text Editor-->
+      <br>
+      <h5>Content</h5>
+      <quill-editor [style]="editorStyle" [modules]=config formControlName="editor"></quill-editor>
+
+      <input id="submit" type="submit" value="Create Chapter" >
+      <br>
+    </form>
 </div>

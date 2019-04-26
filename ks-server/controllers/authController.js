@@ -53,8 +53,18 @@ AuthController.getUserByJwt = (req, res) => {
   if (bearerHeader) {
     var bearer = bearerHeader.split(" ");
     token = bearer[1];
+
     jwt.verify(token, config.keys.secret, function (err, decoded) {
-      if(err) {
+      console.log(decoded.username)
+
+      User.findOne({
+        where: {username: decoded.username},
+      }).then((users) => {
+        res.json(users);
+      }).catch((error) => {
+        res.json(error);
+      });
+/*       if(err) {
         console.log(err);
       } else {
         // Fetch the user by id 
@@ -64,8 +74,7 @@ AuthController.getUserByJwt = (req, res) => {
               user
             });
         });
-      }
-      
+      } */
     })
   }
 };
@@ -101,8 +110,7 @@ AuthController.authenticateUser = (req, res) => {
             );
             res.json({
               success: true,
-              token: `${token}`,
-              role: user.role,
+              token: `${token}`
             });
           } else {
             res.status(403).json({
@@ -118,5 +126,20 @@ AuthController.authenticateUser = (req, res) => {
     });
   }
 };
+
+AuthController.updateUser = (req, res) => {
+  console.log(req.body.biography);
+
+  User.update(
+      {biography: req.body.biography},
+      {where: {username: req.params.username}}
+  )
+  .then(result => {
+      res.json(result)
+  })
+  .catch(err => {
+      res.json(err)
+  })
+}
 
 module.exports = AuthController;

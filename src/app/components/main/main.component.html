@@ -32,8 +32,9 @@
               </ul>-->
           </li>
       </ul>
-      <hr class="hr-90">
-      <ul class="list-unstyled components">
+      
+      <ul class="list-unstyled components" *ngIf="!loggedIn">
+        <hr class="hr-90">
           <li>
               <a routerLink="/login">
                   <i class="fa fa-sign-in">&nbsp;&nbsp;Login</i>
@@ -41,7 +42,8 @@
           </li>
           
       </ul>
-      <ul class="list-unstyled components" *ngIf="isLogged">
+
+      <ul class="list-unstyled components" *ngIf="loggedIn">
             <hr class="hr-90">
             <li>
                 <a routerLink="/profile">
@@ -54,6 +56,11 @@
                 </a>
             </li>
             <hr class="hr-90">
+            <li>
+                <a (click)="logout()">
+                        <i class="fa fa-caret-square-o-left">&nbsp;&nbsp;Logout</i>
+                </a>
+            </li>
         </ul>
   </nav><!--END NAV -->
 
@@ -78,17 +85,17 @@
 
       <a routerLink="/home">Home</a>
       <a routerLink="/about">About</a>
-      <a routerLink="/story-page">Stories</a>
+      <a routerLink="/story/1">Stories</a>
       
-    <div>
+    <div *ngIf="!loggedIn">
         <hr class="hr-75">
         <a routerLink="/login">Login</a>
     </div>
-    <!--<div *ngIf="myService.currentUser.type_id == 1">
+    <div *ngIf="loggedIn">
         <hr class="hr-75">
-        <a routerLink="/profile">Profile</a>
-        <a routerLink="/favorites">Favorites</a>
-        <a >Logout</a>
-    </div>-->
+        <a routerLink="/dashboard">Profile</a>
+        <!--<a routerLink="/favorites">Favorites</a>-->
+        <a (click)="logout()">Logout</a>
+    </div>
   </div>
 </div>

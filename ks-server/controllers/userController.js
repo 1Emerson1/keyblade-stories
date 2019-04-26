@@ -27,4 +27,17 @@ UserController.getUserById = (req, res) => {
   });
 };
 
+UserController.updateUser = (req, res) => {
+  User.update(
+      {biography: req.body.biography},
+      {where: {username: req.params.username}}
+  )
+  .then(result => {
+      res.json(result)
+  })
+  .catch(err => {
+      res.json(err)
+  })
+}
+
 module.exports = UserController;

@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 
 import { User } from '../models/user';
 
+import { DatasharingService } from './datasharing.service';
+
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
@@ -12,15 +14,16 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   public redirectUrl: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private dataSharingService: DatasharingService) {}
 
   login(user: User) {
     return this.http.post<any>("http://0.0.0.0:3000/api/login", user)
     .pipe(map(user => {
       if(user && user.token) {
-        localStorage.setItem('ACCESS_TOKEN', JSON.stringify(user.token));
+        localStorage.setItem('ACCESS_TOKEN', user.token);
       }
       this.isLoggedIn = true;
+      this.dataSharingService.loggedIn.next(true);
 
       if(this.redirectUrl) {
         this.router.navigate([this.redirectUrl]);
@@ -37,8 +40,6 @@ export class AuthService {
   }
 
   get loggedIn(): boolean{
-    console.log(localStorage.getItem('ACCESS_TOOKEN'));
-    
     return localStorage.getItem('ACCESS_TOKEN') !==  null;
   }
 }

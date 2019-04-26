@@ -20,6 +20,10 @@ var modelDefinition = {
         type: Sequelize.STRING,
         allowNull: true,
     },
+    biography: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+    },
 };
 
 const modelOptions = {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-chapter',
@@ -8,8 +7,8 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
   styleUrls: ['./create-chapter.component.css']
 })
 export class CreateChapterComponent implements OnInit {
-
-  chapterForm: FormGroup
+  submitted = false;
+  chapterForm: FormGroup;
 
   editorStyle ={
     height:'400px'
@@ -27,20 +26,19 @@ export class CreateChapterComponent implements OnInit {
      ]
    }
    
-
-
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.chapterForm =new FormGroup({
-      'chapterTitle' :new FormControl(null),
-      'editor': new FormControl(null)
-    })
-    
+    this.chapterForm  =  this.formBuilder.group({
+      chapterTitle: ['', Validators.required],
+      editor: ['', Validators.required],
+    });
   }
 
-  chapterCreate(){
-    console.log(this.chapterForm.value);
+  get f() { return this.chapterForm.controls; }
+
+  chapterCreate() {
+    // console.log(this.chapterForm.value);
     console.log(this.chapterForm.get('editor').value);
   }
 

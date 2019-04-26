@@ -14,6 +14,7 @@ router.post('/api/login', authController.authenticateUser);
 router.post('/api/signup', authController.signUp);
 router.post('/api/createstory', storyController.createStory);
 router.post('/api/createchapter', chapterController.createChapter);
+router.put('/api/users/:username', userController.updateUser);
 
 // story routes
 router.post('/api/createstory', storyController.createStory);

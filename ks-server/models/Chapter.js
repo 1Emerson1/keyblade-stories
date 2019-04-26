@@ -4,7 +4,6 @@ const Sequelize = require('sequelize');
 const config = require('../config');
 const db = require('../database')
 
-
 var modelDefiniton = {
     chapterID: {
         type: Sequelize.INTEGER,

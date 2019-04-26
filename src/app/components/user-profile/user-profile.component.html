@@ -1,11 +1,11 @@
-<div id="dashboard" class="container-fluid">
+<div id="dashboard" class="container-fluid" *ngIf="profile">
 
   <div class="row" align="center">
     <div class="col-sm-4 col-md-4 offset-lg-4 offset-sm-4">
-        <img class="img-thumbnail img-fluid" src="../../../assets/profile.jpg">
+        <img class="img-thumbnail img-fluid" [src]="netImage">
         <hr class="hr-custom">
       </div>
-        <h3 class="col-12"><small class="text-muted">Welcome,</small> Emerson!</h3>
+        <h3 class="col-12"><small class="text-muted">Welcome,</small> {{profile.username}}!</h3>
 
   </div>
 
@@ -17,7 +17,7 @@
       <button class="btn btn-link">Edit</button>
     </div>
     <div class="round-box col-12">
-      <p>Some text</p>
+      <p>{{profile.biography}}</p>
     </div>
   </div>
 

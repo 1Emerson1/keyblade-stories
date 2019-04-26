@@ -27,10 +27,7 @@ export class UserService {
     return this.http.put("http://0.0.0.0:3000/users/" + user.username, user);
   }
 
-  getProfile(): Observable<any> {
-    return this.http.get<any>("http://0.0.0.0:3000/api/profile")
-      .pipe(map(user => {
-        return user;
-      }))
+  getProfile() {
+    return this.http.get<any>("http://0.0.0.0:3000/api/profile");
   }
 }

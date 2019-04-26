@@ -22,6 +22,7 @@ import { CreateChapterComponent } from './components/create-chapter/create-chapt
 // SERVICES
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
+import { DatasharingService } from './services/datasharing.service';
 
 // HELPERS
 import { JwtInterceptor } from './helpers/jwt.interceptor';
@@ -65,8 +66,10 @@ import { ChapterPageComponent } from './components/chapter-page/chapter-page.com
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     UserService, 
-    AuthService
+    AuthService,
+    DatasharingService,
   ],
   bootstrap: [AppComponent]
 })
