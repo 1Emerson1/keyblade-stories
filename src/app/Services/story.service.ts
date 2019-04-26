@@ -31,6 +31,10 @@ export class StoryService {
   getStorybyID(story_id): Observable<any> {
     return this.http.get<any>("http://0.0.0.0:3000/api/story/" + story_id);
   }
+
+  update(story): Observable<any> {
+    return this.http.put<any>("http://0.0.0.0:3000/api/story/" + story.id, story);
+  }
   
 }
 

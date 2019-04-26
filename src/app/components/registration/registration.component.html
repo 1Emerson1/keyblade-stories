@@ -1,20 +1,21 @@
 <div id="registration" class="container-fluid" align="center">
-        <div class="row" align="center">
-                <div class="col-5">
-                    <a routerLink="/login">Login</a>
-                </div>
-                <div class="col-2">
-                    |
-                </div>
-                <div class="col-5">
-                    <a routerLink="/register">Register</a>
-                </div>
-            </div>
+    <div class="row" align="center">
+        <div class="col-5">
+            <a routerLink="/login">Login</a>
+        </div>
+        <div class="col-2">
+            |
+        </div>
+        <div class="col-5">
+            <a routerLink="/register">Register</a>
+        </div>
+    </div>
 
-
+    <br>
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
     <form [formGroup]="registerForm" (ngSubmit)="signup()">
         <div id="avatar" class="row">
-            <div class="col-6 col-sm-3">
+            <div class="col-7 col-sm-4">
                 <label for="image-upload">
                     <img [src]="netImage" alt="avatar"> 
                 </label>
@@ -23,41 +24,35 @@
         </div>
 
         <div class="row">
-            <label class="col-sm-2 offset-sm-1" for="username">Username:</label>
-            <div class="col-sm-7">
-                <input type="username" formControlName="username">
+            <div class="col-md-6 offset-md-3">
+                <div class="col-10">
+                    <input placeholder="Username" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required.</div>
+                    </div>
+                </div>
             </div>
-            <div *ngIf="formControls.username.touched && formControls.username.errors" class="help-block">
-                <p *ngIf="formControls.username.errors.required">Username is required.</p>
-            </div>
-        </div>
+            <br>
 
-        <div class="row">
-            <label class="control-label col-sm-2 offset-sm-1" for="register-email">Email: </label>
-            <div class="col-sm-7">
-                <input type="email" formControlName="email">
-            </div> 
-            <div *ngIf="formControls.email.touched && formControls.email.errors" class="help-block">
-                <p *ngIf="formControls.email.errors.required">Email is required</p>
+            <div class="col-md-6 offset-md-3">
+                <div class="col-10">
+                    <input placeholder="Password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <label class="control-label col-sm-2 offset-sm-1" for="register-password">Password: </label>
-            <div class="col-sm-7">
-                <input type="password" formControlName="password">
-            </div>
-            <div *ngIf="formControls.password.touched && formControls.password.errors" class="help-block">
-                <p *ngIf="formControls.password.errors.required">Password is required.</p>
-                <p *ngIf="formControls.password.errors.pattern">Password requires one captial letter (A-Z) and symbol [ !@#$%^&*() ]</p>
-            </div> 
-        </div>
-        <div class="row">
-            <label class="control-label col-sm-2 offset-sm-1" for="register-confirm">Confirm Password: </label>
-            <div class="col-sm-7">
-                <input type="password" formControlName="password_confirm">
-            </div>
-            <div *ngIf="formControls.password_confirm.touched && formControls.password_confirm.errors" class="help-block">
-                <p *ngIf="formControls.password.errors.required">Confirm password is required.</p>
+
+            <div class="col-md-6 offset-md-3">
+                <div class="col-10">
+                    <input placeholder="Confirm password" type="password" formControlName="password_confirm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password_confirm.errors }" pattern="{{f.password.value}}">
+                    <div *ngIf="registerForm.invalid && (submitted || f.password.touched)" class="invalid-feedback">
+                        <div *ngIf="f.password_confirm.errors.required">Confirm password is required</div>
+                        <div *ngIf="f.password_confirm.errors.pattern">
+                            Passwords do not match!
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">

@@ -20,8 +20,8 @@ import { CreateStoryComponent } from './components/create-story/create-story.com
 import { CreateChapterComponent } from './components/create-chapter/create-chapter.component';
 
 // SERVICES
-import { JwtService } from './services/jwt.service';
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 // HELPERS
 import { JwtInterceptor } from './helpers/jwt.interceptor';
@@ -55,8 +55,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     JwtModule.forRoot({
       config: {
         tokenGetter: function tokenGetter() {
-          return localStorage.getItem('ACESS_TOKEN');},
-          whitelistedDomains: ['0.0.0.0:3000'],
+          return localStorage.getItem('ACCESS_TOKEN');},
+          whitelistedDomains: ['http://0.0.0.0:3000'],
           blacklistedRoutes: ['http://0.0.0.0:3000/api/login']
       }
     })
@@ -64,7 +64,7 @@ import { JwtModule } from '@auth0/angular-jwt';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    JwtService, 
+    UserService, 
     AuthService
   ],
   bootstrap: [AppComponent]

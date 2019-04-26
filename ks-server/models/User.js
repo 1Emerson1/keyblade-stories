@@ -12,11 +12,6 @@ var modelDefinition = {
         allowNull: false,
         primaryKey: true
     },
-    email: {
-        type: Sequelize.STRING,
-        unique: true,
-        allowNull: false
-    },
     password: {
         type: Sequelize.STRING,
         allowNull: false,

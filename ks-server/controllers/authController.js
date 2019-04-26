@@ -8,7 +8,7 @@ const AuthController = {};
 
 // Register a user.
 AuthController.signUp = (req, res) => {
-  if (!req.body.username || !req.body.password || !req.body.email) {
+  if (!req.body.username || !req.body.password) {
     res.json({
       message: 'Please provide a username, email and a password.',
     });
@@ -16,16 +16,27 @@ AuthController.signUp = (req, res) => {
     db.sync().then(() => {
       const newUser = {
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password,
         profileImage: req.body.profileImage,
       };
 
-      return User.create(newUser).then(() => {
-        res.status(201).json({
-          message: 'Account created!',
-        });
-      });
+      User.findOne({
+        where: {
+          username: newUser.username,
+        },
+      }).then((user) => {
+        if(user.username == newUser.username){
+          res.status(401).json({
+            message: 'Username already exists!',
+          });
+        } else {
+          return User.create(newUser).then(() => {
+            res.status(201).json({
+              message: 'Account created!',
+            });
+          });
+        }
+      })
     }).catch((error) => {
       res.status(403).json({
         message: error,

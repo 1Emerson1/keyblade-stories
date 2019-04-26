@@ -31,7 +31,6 @@ StoryController.createStory = (req, res) => {
 };
 
 // store Chapter
-
 StoryController.recentStories = (req, res) => {
     Story.findAll({
         limit: 4,
@@ -69,6 +68,19 @@ StoryController.getStoryById = (req, res) => {
     }).catch((error) => {
         res.json(error);
     });
+}
+
+StoryController.updateStory = (req, res) => {
+    Story.update(
+        {likes: req.body.likes},
+        {where: {story_id: req.params.story_id}}
+    )
+    .then(result => {
+        res.json(result)
+    })
+    .catch(err => {
+        res.json(err)
+    })
 }
 
 

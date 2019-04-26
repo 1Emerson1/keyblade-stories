@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from  '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user';
 
 @Component({
     selector: 'login-page',
@@ -14,7 +15,6 @@ import { AuthService } from '../../services/auth.service';
   export class LoginPageComponent implements OnInit {
     loginForm: FormGroup;
     submitted = false;
-    loading = false;
     returnUrl: string;
     error = '';
   
@@ -43,19 +43,22 @@ import { AuthService } from '../../services/auth.service';
       if(this.loginForm.invalid) {
         return;
       }
-      this.loading = true;
       
-      this.authService.login(this.f.username.value, this.f.password.value)
+      const user: User = {
+        username: this.f.username.value,
+        password: this.f.password.value
+      }
+      this.authService.login(user)
         .pipe(first())
         .subscribe(
           data => {
-            this.router.navigate([this.returnUrl]);
+            //this.router.navigate([this.returnUrl]);
+            this.router.navigateByUrl('/dashboard');
           },
           error => {
             this.error = error;
-            this.loading = false;
           }
         )
-      //this.router.navigateByUrl('/story-page');
+      
     }
   }
