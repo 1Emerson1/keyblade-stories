@@ -35,6 +35,10 @@
   }
 
   #headerBar h3 {
+    padding: 2px;
+  }
+
+  #headerBar h3 {
     padding: 5px;
   }
 

@@ -1,10 +1,21 @@
-<div id="story-page" class="container-fluid">
+<div *ngIf="story" id="story-page" class="container-fluid">
   <br>
-  <div *ngIf="story" id="book" class="row">
-
+  
+  <div class="row">
+    <div id="book-information" class="col-12">
+      <div class="container">
+        <p class="h4">{{story.title}}</p>
+        <p class="h5">{{story.username}}</p>
+      </div>
+    </div>
+    
+  </div>
+  <hr class="col-9">
+  <div id="book" class="row">
       <div class="col-sm-5">
         <div class="row">
-          <img class="img-fluid" [src]="story.coverImage" alt="book-artwork">
+          <img *ngIf="!story.coverImage" class="img-fluid col-12" src="../../../assets/book.png" alt="book-artwork">
+          <img *ngIf="story.coverImage" class="img-fluid col-12" src="data:image/JPEG;base64,{{story.coverImage}}" alt="book-artwork">
         </div>
         <div class="row">
           <div id="ratings" class="row float-right">
@@ -13,33 +24,18 @@
           </div>
         </div>
       </div>
-
-      <div id="book-information" class="col-sm-7">
-        <div class="container">
-          <p class="h4">{{story.title}}</p>
-          <p class="h5">Andy Weir</p>
-          <br>
-          <br>
+      <div id="book-summary" class="col-sm-6">
           <p class="h6">summary:</p>
           <p>{{story.summary}}</p>
-          <br>
+          <!--<br>
           <p class="h6">tags:</p>
-          <p>stuff, thriller, action, etc</p>
-          
-        </div>
+          <p>stuff, thriller, action, etc</p>-->
       </div>
-
   </div>
 
-  <div class="row">
-    <p class="text-uppercase font-weight-bold">Chapters</p>
-    <div id="chapters" class="container">
-      <p>CH 1 - Chapter Title</p>
-      <p>CH 2 - Chapter Title</p>
-    </div>
-  </div>
+
   <br>
-  <div class="row">
+  <!--<div class="row">
     <p class="text-uppercase font-weight-bold">Comments</p>
     <div id="comments" class="container">
       <div class="comment">
@@ -47,8 +43,15 @@
           <p>Action pack that builds up a irresistible immersion.</p>
       </div>
     </div>
+  </div>-->
+  <div *ngIf="chapters" class="row">
+      <p class="text-uppercase font-weight-bold">Chapters</p>
+      <div id="chapters" class="container">
+        <li *ngFor="let chapter of chapters">
+            <p>CH {{chapter.chapterNo}} - <a routerLink="chapter/{{chapter.chapterID}}">{{chapter.chapterTitle}}</a></p>
+        </li>
+      </div>
   </div>
-  <br>
 
 
 </div>

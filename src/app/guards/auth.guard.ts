@@ -23,6 +23,9 @@ export class AuthGuard implements CanActivate {
     this.authService.redirectUrl = url;
 
     // Navigate to the login page with extras
+    
+    localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('TIMER');
     this.router.navigate(['/login']);
     return false;
   }

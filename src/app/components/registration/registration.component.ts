@@ -33,21 +33,12 @@ export class RegistrationComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   signup() {
-    console.log("Registering user!");
-
     this.submitted = true;
     if (this.registerForm.invalid){
       return;
     }
 
-    const newUser: User = {
-      username: this.f.username.value,
-      password: this.f.password.value, 
-      coverImage: this.netImage,
-    }
-    console.log("22222");
-
-    this.userService.signup(newUser).pipe(first())
+    this.userService.signup(this.f.username.value, this.f.password.value,this.netImage).pipe(first())
      .subscribe(
        data => {
         console.log(data)

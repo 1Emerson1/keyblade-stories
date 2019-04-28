@@ -1,9 +1,20 @@
+// MODULES
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { QuillModule } from 'ngx-quill';
+import { JwtModule } from '@auth0/angular-jwt';
+
+// SERVICES
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { DatasharingService } from './services/datasharing.service';
+
+// HELPERS
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
@@ -18,18 +29,11 @@ import { AboutComponent } from './components/about/about.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { CreateStoryComponent } from './components/create-story/create-story.component';
 import { CreateChapterComponent } from './components/create-chapter/create-chapter.component';
-
-// SERVICES
-import { AuthService } from './services/auth.service';
-import { UserService } from './services/user.service';
-import { DatasharingService } from './services/datasharing.service';
-
-// HELPERS
-import { JwtInterceptor } from './helpers/jwt.interceptor';
-import { ErrorInterceptor } from './helpers/error.interceptor';
-
-import { JwtModule } from '@auth0/angular-jwt';
 import { ChapterPageComponent } from './components/chapter-page/chapter-page.component';
+import { ViewStoryComponent } from './components/view-story/view-story.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -46,7 +50,8 @@ import { ChapterPageComponent } from './components/chapter-page/chapter-page.com
     LoginPageComponent,
     CreateStoryComponent,
     CreateChapterComponent,
-    ChapterPageComponent
+    ChapterPageComponent,
+    ViewStoryComponent
   ],
   imports: [
     BrowserModule,

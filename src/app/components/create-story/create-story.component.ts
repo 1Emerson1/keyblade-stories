@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { Router } from '@angular/router';
 
 import { StoryService } from '../../services/story.service';
+import { UserService } from '../../services/user.service';
 
-import { Tag } from '../../models/tag';
+//import { Tag } from '../../models/tag';
 
 /*const TAGS = [
   {id:1, name:'Action'},
@@ -29,36 +30,45 @@ export class CreateStoryComponent implements OnInit {
   ];
 */
   //tags = TAGS;
-  selectedTags : Tag[]
+  // selectedTags : Tag[]
+
   storyForm: FormGroup;
   netImage:any = "./assets/profile.jpg";
+  error = "";
+  submitted = false;
+  username = "";
   
-  
-  constructor(private storyService: StoryService, private router: Router,private formBuilder: FormBuilder) { }
+  constructor(private userService: UserService, private storyService: StoryService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    
     this.storyForm  =  this.formBuilder.group({
-      title: [''],
+      title: ['', Validators.required],
       tags:[''],
-      summary: [''],
+      summary: ['', Validators.required],
       coverImage:['']
     });
-  
   }
  
-  get formControls(){ return this.storyForm.controls; }
+  get f() { return this.storyForm.controls; }
 
-  storyCreate(){
-    console.log(this.storyForm.value);
+  storyCreate() {
+    this.submitted = true;
     if(this.storyForm.invalid){
       return;
     }
 
-    this.storyService.createStory(this.formControls.title.value, this.formControls.summary.value, this.formControls.coverImage.value);
+    this.userService.returnUsername()
+      .subscribe(username => {
+        this.username = username;
+    })
+
+    this.storyService.createStory(this.username, this.f.title.value, this.f.summary.value, this.f.coverImage.value)
+      .subscribe(error => {
+        this.error = error;
+    });
+
+    this.router.navigate(['/create-chapter'])
   }
-
-
   
   onFileSelected(event) {
     if (event.target.files && event.target.files[0]) {
@@ -71,9 +81,6 @@ export class CreateStoryComponent implements OnInit {
     }
   }
 
-  selectTags(){
-    
-
-  }
+  selectTags() {}
 }
 

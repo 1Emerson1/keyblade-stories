@@ -15,10 +15,20 @@ p {
 }
 
 .img-fluid {
+    height: 325px;
+    object-fit: cover;
     padding: 10px;
 }
 
 #chapters, #comments {
     border: 1px solid black;
     border-radius: 5px;
+}
+
+#book-summary {
+    margin: 10px;
+}
+
+li {
+    list-style: none;
 }

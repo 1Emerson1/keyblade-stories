@@ -1,5 +1,6 @@
-// Application configuration.
+const Sequelize = require('sequelize');
 
+// Application configuration.
 const config = module.exports;
 
 config.db = {

@@ -1,9 +1,11 @@
+const fs = require('fs');
 const db = require('../database');
 const Story = require('../models/Story');
+const Chapter = require('../models/Chapter');
 
 const StoryController = {};
 
-// Store story
+// Upload story
 StoryController.createStory = (req, res) => {
     if(!req.body.title || !req.body.summary) {
         res.json({
@@ -11,10 +13,14 @@ StoryController.createStory = (req, res) => {
         });
     } else {
         db.sync().then(() => {
+            if(req.body.coverImage) {
+                var img = new Buffer(fs.readFileSync(req.body.coverImage)).toString('base64');
+            }
             const newStory = {
                 title: req.body.title,
-                coverImage: req.body.coverImage,
-                summary: req.body.summary
+                coverImage: img,
+                summary: req.body.summary,
+                username: req.body.username,
             };
 
             return Story.create(newStory).then(() => {
@@ -23,8 +29,9 @@ StoryController.createStory = (req, res) => {
                 });
             });
         }).catch((error) => {
+            console.log(error)
             res.status(403).json({
-                message: error,
+                message: error
             });
         });
     }
@@ -62,9 +69,8 @@ StoryController.popularStories = (req, res) => {
 StoryController.getStoryById = (req, res) => {
     Story.findOne({
         where: {story_id: req.params.story_id},
-        attributes: ['story_id', 'title', 'summary', 'coverImage', 'likes', 'dislikes'],
-    }).then((stories) => {
-        res.json(stories);
+    }).then((story) => {
+        res.json(story)    
     }).catch((error) => {
         res.json(error);
     });
@@ -82,6 +88,5 @@ StoryController.updateStory = (req, res) => {
         res.json(err)
     })
 }
-
 
 module.exports = StoryController;

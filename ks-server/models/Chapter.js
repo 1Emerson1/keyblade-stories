@@ -9,6 +9,9 @@ var modelDefiniton = {
         type: Sequelize.INTEGER,
         primaryKey: true
     },
+    chapterNo: {
+        type: Sequelize.INTEGER,
+    },
     chapterTitle: {
         type: Sequelize.STRING,
         allowNull: false

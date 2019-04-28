@@ -58,6 +58,13 @@
     text-align:center;
     color: #fff;
     background: #014089;
+    padding: 1px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  #headerBar h3 {
+    padding: 2px;
   }
   #coverImageHeader{
     margin: 0 auto;
@@ -108,14 +115,18 @@
   }
 
   @media only screen and (max-width: 600px){
-    #createStory textarea{
-      height:200px;
+    #summary {
+      height: 200px;
     }
   }
 
   @media only screen and (max-width: 400px){
-    #createStory textarea{
-      height:300px;
+    #summary {
+      height: 300px;
     }
   }
   
+  textarea::placeholder {
+    padding: 3px;
+    font-size: .95em;  
+  }

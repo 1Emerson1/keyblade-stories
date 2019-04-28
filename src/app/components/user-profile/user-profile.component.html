@@ -2,14 +2,15 @@
 
   <div class="row" align="center">
     <div class="col-sm-4 col-md-4 offset-lg-4 offset-sm-4">
-        <img class="img-thumbnail img-fluid" [src]="netImage">
+        <img *ngIf="!profile.coverImage" class="img-thumbnail img-fluid" src="../../../assets/profile.jpg">
+        <img *ngIf="profile.coverImage" class="img-thumbnail img-fluid" src="{{profile.coverImage}}">
         <hr class="hr-custom">
       </div>
         <h3 class="col-12"><small class="text-muted">Welcome,</small> {{profile.username}}!</h3>
 
   </div>
 
-  <div class="row">
+  <div *ngIf="profile.biography" class="row">
     <div class="col-6">
         <h5><small>Biography</small></h5>
     </div>
@@ -21,7 +22,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div *ngIf="profile.stories" class="row">
     <div class="col-6">
       <h5><small>My Stories</small></h5>
     </div>
@@ -30,7 +31,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div *ngIf="profile.liked_stories" class="row">
     <div class="col-6">
       <h5><small>Liked Stories</small></h5>
     </div>

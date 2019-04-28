@@ -17,7 +17,7 @@ AuthController.signUp = (req, res) => {
       const newUser = {
         username: req.body.username,
         password: req.body.password,
-        profileImage: req.body.profileImage,
+        coverImage: req.body.coverImage,
       };
 
       User.findOne({
@@ -25,7 +25,7 @@ AuthController.signUp = (req, res) => {
           username: newUser.username,
         },
       }).then((user) => {
-        if(user.username == newUser.username){
+        if(user){
           res.status(401).json({
             message: 'Username already exists!',
           });
@@ -105,7 +105,7 @@ AuthController.authenticateUser = (req, res) => {
               username: user.username,
             },
             config.keys.secret, {
-              expiresIn: '1h',
+              expiresIn: '1d',
             },
             );
             res.json({

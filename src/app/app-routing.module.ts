@@ -10,6 +10,8 @@ import { StoryPageComponent } from './components/story-page/story-page.component
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { CreateStoryComponent } from './components/create-story/create-story.component';
 import { CreateChapterComponent } from './components/create-chapter/create-chapter.component';
+import { ChapterPageComponent } from './components/chapter-page/chapter-page.component'
+import { ViewStoryComponent } from './components/view-story/view-story.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -21,8 +23,10 @@ const routes: Routes = [
   { path: 'dashboard', component: UserProfileComponent, canActivate: [AuthGuard]},
   { path: 'story/:story_id', component: StoryPageComponent},
   { path: 'results', component: SearchResultComponent},
-  { path: 'create-story', component: CreateStoryComponent},
-  { path: 'create-chapter', component: CreateChapterComponent},
+  { path: 'create-story', component: CreateStoryComponent, canActivate: [AuthGuard]},
+  { path: 'create-chapter', component: CreateChapterComponent, canActivate: [AuthGuard]},
+  { path: 'story/:story_id/chapter/:chapter_id', component: ChapterPageComponent },
+  { path: 'view-story', component: ViewStoryComponent},
 
   // otherwise redirect to home
   { path: '**', redirectTo: ''}
@@ -44,5 +48,7 @@ export const routingComponent = [
   StoryPageComponent, 
   SearchResultComponent,          
   CreateStoryComponent, 
-  CreateChapterComponent
+  CreateChapterComponent,
+  ChapterPageComponent,
+  ViewStoryComponent,
 ];

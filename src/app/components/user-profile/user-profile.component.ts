@@ -11,7 +11,6 @@ export class UserProfileComponent implements OnInit {
 
   profile: any;
   error = '';
-  netImage: any = "../assets/profile.jpg"
 
   constructor(private userService: UserService) { }
 
@@ -26,10 +25,8 @@ export class UserProfileComponent implements OnInit {
       .subscribe(
         profile => {
           this.profile = profile;
-          // this.netImage = profile.coverImage;
         },
         error => {
-          console.log(error)
           this.error = error;
         }
       )

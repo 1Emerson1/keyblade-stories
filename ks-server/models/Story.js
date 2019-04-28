@@ -28,7 +28,11 @@ var modelDefinition = {
     dislikes: {
         type: Sequelize.INTEGER,
         allowNull: true,
-    }
+    },
+    username: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
 };
 
 const StoryModel = db.define('Story', modelDefinition);

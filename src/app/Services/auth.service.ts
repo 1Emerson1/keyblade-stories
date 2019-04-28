@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 import { User } from '../models/user';
 
 import { DatasharingService } from './datasharing.service';
@@ -10,6 +12,7 @@ import { DatasharingService } from './datasharing.service';
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
+  private API_URL = environment.API_URL;
   isLoggedIn: boolean = false;
   // store the URL so we can redirect after logging in
   public redirectUrl: string;
@@ -17,10 +20,12 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router, private dataSharingService: DatasharingService) {}
 
   login(user: User) {
-    return this.http.post<any>("http://0.0.0.0:3000/api/login", user)
+    return this.http.post<any>(this.API_URL + "login", user)
     .pipe(map(user => {
       if(user && user.token) {
         localStorage.setItem('ACCESS_TOKEN', user.token);
+        const time_to_login = Date.now() + 3600000;
+        localStorage.setItem('TIMER', JSON.stringify(time_to_login));
       }
       this.isLoggedIn = true;
       this.dataSharingService.loggedIn.next(true);
@@ -36,7 +41,9 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
+    this.dataSharingService.loggedIn.next(false);
     localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('TIMER');
   }
 
   get loggedIn(): boolean{

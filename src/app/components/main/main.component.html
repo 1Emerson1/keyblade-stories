@@ -13,9 +13,6 @@
             <a routerLink="/about">
                 <i class="fa fa-users">&nbsp;&nbsp;About</i>
             </a>
-            <a routerLink="/story-page">
-                <i class="fa fa-book">&nbsp;&nbsp;Stories</i>
-            </a>
               <!--<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
                   <i class="fa fa-copy dropdown-toggle">&nbsp;&nbsp;Pages&nbsp;</i>
               </a>
@@ -40,11 +37,15 @@
                   <i class="fa fa-sign-in">&nbsp;&nbsp;Login</i>
               </a>
           </li>
-          
       </ul>
 
       <ul class="list-unstyled components" *ngIf="loggedIn">
             <hr class="hr-90">
+            <li>
+                <a routerLink="/create-story">
+                    <i class="fa fa-book">&nbsp;&nbsp;Create Story</i>
+                </a>
+            </li>     
             <li>
                 <a routerLink="/profile">
                     <i class="fa fa-user" aria-hidden="true">&nbsp;&nbsp;Profile</i>
@@ -85,7 +86,6 @@
 
       <a routerLink="/home">Home</a>
       <a routerLink="/about">About</a>
-      <a routerLink="/story/1">Stories</a>
       
     <div *ngIf="!loggedIn">
         <hr class="hr-75">
@@ -93,6 +93,7 @@
     </div>
     <div *ngIf="loggedIn">
         <hr class="hr-75">
+        <a routerLink="/create-story">Create Story</a>
         <a routerLink="/dashboard">Profile</a>
         <!--<a routerLink="/favorites">Favorites</a>-->
         <a (click)="logout()">Logout</a>

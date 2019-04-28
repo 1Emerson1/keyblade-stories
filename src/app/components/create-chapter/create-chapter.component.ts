@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-create-chapter',
   templateUrl: './create-chapter.component.html',
@@ -26,12 +28,12 @@ export class CreateChapterComponent implements OnInit {
      ]
    }
    
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.chapterForm  =  this.formBuilder.group({
       chapterTitle: ['', Validators.required],
-      editor: ['', Validators.required],
+      editor: [''],
     });
   }
 
@@ -40,6 +42,13 @@ export class CreateChapterComponent implements OnInit {
   chapterCreate() {
     // console.log(this.chapterForm.value);
     console.log(this.chapterForm.get('editor').value);
+
+    
+
+
+    var story_id, chapter_id;
+
+    this.router.navigate(['/story/' + story_id + '/chapter/' + chapter_id])
   }
 
 }
