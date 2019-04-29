@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 const config = require('../config');
 const db = require('../database');
 const User = require('../models/User');
@@ -14,10 +15,13 @@ AuthController.signUp = (req, res) => {
     });
   } else {
     db.sync().then(() => {
+      if(req.body.coverImage) {
+        var img = new Buffer(fs.readFileSync(req.body.coverImage)).toString('base64');
+      }
       const newUser = {
         username: req.body.username,
         password: req.body.password,
-        coverImage: req.body.coverImage,
+        coverImage: img,
       };
 
       User.findOne({
@@ -38,6 +42,7 @@ AuthController.signUp = (req, res) => {
         }
       })
     }).catch((error) => {
+      console.log(error)
       res.status(403).json({
         message: error,
       });

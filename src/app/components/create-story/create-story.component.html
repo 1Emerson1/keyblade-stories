@@ -5,7 +5,7 @@
   
   <div *ngIf="error" class="alert alert-danger">{{error}}</div>
   <form [formGroup]="storyForm" class="story-container" (ngSubmit)="storyCreate()">
-    <!--Cover Image-->
+    <!--Cover Image
     <div id="coverImage" class="row">
         <div class="col-4">
             <label for="image-upload">
@@ -15,14 +15,14 @@
             <hr>
             <h5 id="coverImageHeader">Cover Image</h5>
         </div>      
-    </div>
+    </div>-->
     <!--Story Title-->
     <div class=row>
-      <input type="title" placeholder="Title" formControlName="title" class="form-control" required minlength="4" required maxlength="50" [ngClass]="{ 'is-invalid': submitted || (f.title.errors &&  f.title.touched)}">
-      <div *ngIf="submitted || f.title.errors" class="invalid-feedback">
-          <div *ngIf="f.title.errors.required">Story title is required.</div>
-          <div *ngIf="f.title.errors.minlength">Title must be at least 4 character long.</div>
-          <div *ngIf="f.title.errors.maxlength">Title cannot be more than 50 characters long.</div>
+      <input type="title" placeholder="Title" formControlName="title" class="form-control" required minlength="4" required maxlength="50" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+      <div *ngIf="submitted || (f.title.touched && f.title.errors)" class="invalid-feedback">
+          <div *ngIf="f.title.invalid && f.title.errors.required">Story title is required.</div>
+          <div *ngIf="f.title.invalid && f.title.errors.minlength">Title must be at least 4 character long.</div>
+          <div *ngIf="f.title.invalid && f.title.errors.maxlength">Title cannot be more than 50 characters long.</div>
       </div>
     </div>
     <!--Story Tags--> 
@@ -33,9 +33,9 @@
     </li>
     <br>-->
     <!--Story Summary--> 
-    <textarea id="summary" formControlName="summary" class="form-control" placeholder="Enter your story's summary..." [ngClass]="{ 'is-invalid': submitted || (f.summary.errors && f.summary.touched) }"></textarea>
-    <div *ngIf="submitted || f.summary.errors" class="invalid-feedback">
-        <div *ngIf="f.summary.errors.required">Summary is required.</div>
+    <textarea id="summary" formControlName="summary" class="form-control" placeholder="Enter your story's summary..." [ngClass]="{ 'is-invalid': submitted && f.summary.errors }"></textarea>
+    <div *ngIf="submitted || (f.summary.touched && f.summary.errors)" class="invalid-feedback">
+        <div *ngIf="f.summary.invalid && f.summary.errors.required">Summary is required.</div>
     </div>
     
     <p>

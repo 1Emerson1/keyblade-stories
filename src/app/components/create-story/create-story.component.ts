@@ -33,10 +33,10 @@ export class CreateStoryComponent implements OnInit {
   // selectedTags : Tag[]
 
   storyForm: FormGroup;
-  netImage:any = "./assets/profile.jpg";
   error = "";
   submitted = false;
   username = "";
+  netImage = "";
   
   constructor(private userService: UserService, private storyService: StoryService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -62,6 +62,9 @@ export class CreateStoryComponent implements OnInit {
         this.username = username;
     })
 
+    //var img = new Buffer(fs.readFileSync(this.netImage)).toString('base64');
+    //console.log(img)
+
     this.storyService.createStory(this.username, this.f.title.value, this.f.summary.value, this.f.coverImage.value)
       .subscribe(error => {
         this.error = error;
@@ -75,7 +78,7 @@ export class CreateStoryComponent implements OnInit {
       var reader = new FileReader();
   
       reader.onload = (event: ProgressEvent) => {
-        this.netImage = (<FileReader>event.target).result;
+        var netImage = (<FileReader>event.target).result;
       }
       reader.readAsDataURL(event.target.files[0]);
     }

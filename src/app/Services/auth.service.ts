@@ -24,7 +24,7 @@ export class AuthService {
     .pipe(map(user => {
       if(user && user.token) {
         localStorage.setItem('ACCESS_TOKEN', user.token);
-        const time_to_login = Date.now() + 3600000;
+        const time_to_login = Date.now() + 86400000;
         localStorage.setItem('TIMER', JSON.stringify(time_to_login));
       }
       this.isLoggedIn = true;

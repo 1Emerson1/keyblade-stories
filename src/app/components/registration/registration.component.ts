@@ -17,6 +17,7 @@ export class RegistrationComponent implements OnInit {
   submitted = false;
   loading = false;
   error = '';
+  message = '';
   netImage:any = "./assets/profile.jpg"
 
   constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) { }
@@ -41,10 +42,9 @@ export class RegistrationComponent implements OnInit {
     this.userService.signup(this.f.username.value, this.f.password.value,this.netImage).pipe(first())
      .subscribe(
        data => {
-        console.log(data)
+         this.message = data;
        },
        error => {
-         console.log(error)
          this.error = error;
          this.loading = false;
        }

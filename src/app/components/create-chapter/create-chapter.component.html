@@ -8,11 +8,11 @@
     <form [formGroup]="chapterForm" class="chapter-container" (ngSubmit)="chapterCreate()">
       <!--Chapter Title-->
         <h5>Title</h5>
-        <input class="col-12" type="text" placeholder="Title" formControlName="chapterTitle" required minlength="4" required maxlength="50" class="form-control" [ngClass]="{ 'is-invalid': submitted || f.chapterTitle.errors }">
-        <div *ngIf="submitted || (f.chapterTitle.errors && f.chapterTitle.touched)" class="invalid-feedback">
-          <div *ngIf="f.chapterTitle.errors.required">Title is required</div>
-          <div *ngIf="f.chapterTitle.errors.minlength">Title must be at least 4 character long.</div>
-          <div *ngIf="f.chapterTitle.errors.maxlength">Title cannot be more than 50 characters long.</div>
+        <input class="col-12" type="text" placeholder="Title" formControlName="chapterTitle" required minlength="4" required maxlength="50" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.chapterTitle.errors }">
+        <div *ngIf="submitted || (f.chapterTitle.touched && f.chapterTitle.errors)" class="invalid-feedback">
+          <div *ngIf="f.chapterTitle && f.chapterTitle.errors.required">Title is required</div>
+          <div *ngIf="f.chapterTitle && f.chapterTitle.errors.minlength">Title must be at least 4 character long.</div>
+          <div *ngIf="f.chapterTitle && f.chapterTitle.errors.maxlength">Title cannot be more than 50 characters long.</div>
         </div>
 
     <!--Quill Text Editor-->

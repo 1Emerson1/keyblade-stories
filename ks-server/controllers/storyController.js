@@ -1,7 +1,6 @@
 const fs = require('fs');
 const db = require('../database');
 const Story = require('../models/Story');
-const Chapter = require('../models/Chapter');
 
 const StoryController = {};
 
@@ -14,11 +13,14 @@ StoryController.createStory = (req, res) => {
     } else {
         db.sync().then(() => {
             if(req.body.coverImage) {
-                var img = new Buffer(fs.readFileSync(req.body.coverImage)).toString('base64');
+                //var img = new Buffer(fs.readFileSync(req.body.coverImage)).toString('base64');
+                console.log(req.body.coverImage)
             }
+
+
             const newStory = {
                 title: req.body.title,
-                coverImage: img,
+                //coverImage: img,
                 summary: req.body.summary,
                 username: req.body.username,
             };
@@ -29,7 +31,6 @@ StoryController.createStory = (req, res) => {
                 });
             });
         }).catch((error) => {
-            console.log(error)
             res.status(403).json({
                 message: error
             });

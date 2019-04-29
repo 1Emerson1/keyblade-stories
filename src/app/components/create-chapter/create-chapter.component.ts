@@ -40,11 +40,9 @@ export class CreateChapterComponent implements OnInit {
   get f() { return this.chapterForm.controls; }
 
   chapterCreate() {
+    this.submitted = true;
     // console.log(this.chapterForm.value);
     console.log(this.chapterForm.get('editor').value);
-
-    
-
 
     var story_id, chapter_id;
 
