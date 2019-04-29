@@ -25,8 +25,8 @@ const routes: Routes = [
   { path: 'results', component: SearchResultComponent},
   { path: 'create-story', component: CreateStoryComponent, canActivate: [AuthGuard]},
   { path: 'create-chapter', component: CreateChapterComponent, canActivate: [AuthGuard]},
-  { path: 'story/:story_id/chapter/:chapter_id', component: ChapterPageComponent },
-  { path: 'view-story', component: ViewStoryComponent},
+  { path: 'story/:story_id/chapter/:chapter_id', component: ViewStoryComponent },
+  // { path: 'view-story', component: ViewStoryComponent},
 
   // otherwise redirect to home
   { path: '**', redirectTo: ''}

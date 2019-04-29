@@ -1,5 +1,40 @@
 <div id="view" class="container-fluid">
-  <div class="row">
-    
+  <div *ngIf="chapter" class="row">
+    <h5>{{chapter.chapterTitle}}</h5>
+    <p>{{chapter.chapterText}}</p>
+  </div>
+
+  <hr>
+  <div *ngIf="chapters && story" class="row">
+      <h6>Want to read more?</h6>
+  </div>
+  <div *ngIf="chapters && story" class="row">
+    <p>Below are additional chapters, click on the link to continue reading.</p>
+    <ul class="list-group col-8 offset-2">
+      <li class="list-group-item list-group-item-action text-center" *ngFor="let next_chapter of chapters">
+        <p routerLink="/story/{{story.story_id}}/chapter/{{next_chapter.chapterID}}">{{next_chapter.chapterTitle}}</p>
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+  <div *ngIf="story" class="row">
+      <h5>{{story.title}}</h5>
+  </div>
+  <div *ngIf="story" class="row">
+
+    <div class="col-sm-5">
+      <img class="img-fluid" *ngIf="!story.coverImage" src="../../../assets/bookcover.jpg">
+      <img class="img-fluid" *ngIf="story.coverImage" src="data:image/JPEG;base64,{{story.coverImage}}" alt="Book cover image">
+    </div>
+    <div class="col-sm-7">
+        <div id="ratings" class="row">
+            <i (click)="upVote()" class="fa fa-thumbs-o-up"> {{story.likes}}</i>
+            <i (click)="downVote()" class="fa fa-thumbs-o-down"> {{story.dislikes}}</i>
+        </div>
+        <p><strong>Summary: </strong>{{story.summary}}</p>
+    </div>
   </div>
 </div>
+
+

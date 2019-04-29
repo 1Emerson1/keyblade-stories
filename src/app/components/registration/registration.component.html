@@ -15,15 +15,15 @@
     <div *ngIf="error" class="alert alert-danger">{{error}}</div>
     <div *ngIf="message" class="alert alert-success">{{message}}</div>
     <form [formGroup]="registerForm" (ngSubmit)="signup()">
-        <div id="avatar" class="row">
+        <!--<div id="avatar" class="row">
             <div class="col-7 col-sm-4">
                 <label for="image-upload">
                     <img *ngIf="!netImage" src="../../../assets/profile.jpg" alt="avatar"> 
                     <img *ngIf="netImage" [src]="netImage" alt="avatar"> 
                 </label>
                 <input formControlName="profileImage" id="image-upload" type="file" accept="image/*" (change)="onFileSelected($event)">
-            </div>    
-        </div>
+            </div>
+        </div> -->
 
         <div class="row">
             <div class="col-md-6 offset-md-3">
